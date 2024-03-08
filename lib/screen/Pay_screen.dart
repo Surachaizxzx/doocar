@@ -156,7 +156,7 @@ class _MultiInputFormState extends State<MultiInputForm> {
               Text(
                 result,
                 style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 19,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
