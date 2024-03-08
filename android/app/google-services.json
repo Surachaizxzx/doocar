@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "387226193003",
+    "project_id": "doocarproject-9e956",
+    "storage_bucket": "doocarproject-9e956.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387226193003:android:1e7a26ac7d1fbe2164b52e",
+        "android_client_info": {
+          "package_name": "com.example.doocar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsZLLyjPvylgH_iNnTrDLruFEOtL1Q_C0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

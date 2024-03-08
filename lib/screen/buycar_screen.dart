@@ -1,5 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
+import 'hidden_drawer.dart';
 
 class BuyMycar extends StatelessWidget {
   const BuyMycar({super.key});
@@ -7,21 +8,8 @@ class BuyMycar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
-        backgroundColor: Colors.black12,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20.0),
-              bottomRight: Radius.circular(20.0),
-            ),
-          ),
-        ),
-        leading: Image.asset(
-          "assets/images/3.png",
-          width: 200,
-          height: 200,
-        ),
         leadingWidth: 100,
         title: const Text('สินค้าที่เลือก'),
       ),

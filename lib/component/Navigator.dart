@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
+import 'package:doocar/screen/hidden_drawer.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +25,7 @@ class _NavigatorbarState extends State<Navigatorbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       body: PageView(
         controller: _pageControlller,
         children: const <Widget>[
@@ -37,7 +37,7 @@ class _NavigatorbarState extends State<Navigatorbar> {
       ),
       extendBody: true,
       bottomNavigationBar: RollingBottomBar(
-        color: Color.fromARGB(226, 163, 161, 163),
+        color: Color.fromARGB(138, 255, 255, 255),
         controller: _pageControlller,
         flat: true,
         useActiveColorByDefault: false,
@@ -51,11 +51,8 @@ class _NavigatorbarState extends State<Navigatorbar> {
           ),
           RollingBottomBarItem(Icons.attach_money,
               label: 'Pay', activeColor: Colors.green),
-          RollingBottomBarItem(
-            Icons.settings,
-            label: 'Setting',
-            activeColor: Color.fromARGB(255, 10, 10, 10),
-          ),
+          RollingBottomBarItem(Icons.attach_money,
+              label: 'setting', activeColor: Colors.green),
         ],
         enableIconRotation: true,
         onTap: (index) {
