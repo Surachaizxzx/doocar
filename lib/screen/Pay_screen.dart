@@ -59,7 +59,7 @@ class _MultiInputFormState extends State<MultiInputForm> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/m.jpg'),
+            image: AssetImage('assets/images/1.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -176,7 +176,7 @@ class _MultiInputFormState extends State<MultiInputForm> {
               style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.red),
+                  color: Colors.black),
             ),
             Text(
               result5,
