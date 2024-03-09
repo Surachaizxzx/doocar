@@ -74,7 +74,7 @@ class _MultiInputFormState extends State<MultiInputForm> {
                   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                 ],
                 decoration: const InputDecoration(
-                  labelText: 'ราคารถ123',
+                  labelText: 'ราคารถ',
                   border: OutlineInputBorder(),
                 ),
               ),
