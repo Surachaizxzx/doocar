@@ -35,7 +35,8 @@ class _NavigatorbarState extends State<Navigatorbar> {
       ),
       extendBody: true,
       bottomNavigationBar: RollingBottomBar(
-        color: Color.fromARGB(137, 233, 150, 25),
+        color: Colors.black,
+        itemColor: const Color.fromARGB(255, 255, 255, 255),
         controller: _pageControlller,
         flat: true,
         useActiveColorByDefault: false,

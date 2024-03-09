@@ -60,7 +60,7 @@ class _Login_logout_State extends State<Login_logout_> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(5, 20, 0, 20),
+          padding: const EdgeInsets.all(0),
           child: Column(
             children: [
               Padding(
@@ -72,27 +72,24 @@ class _Login_logout_State extends State<Login_logout_> {
                         Edit_Profile();
                       },
                       style: TextButton.styleFrom(
-                        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
-                        backgroundColor: Colors.white, // สีของตัวอักษรภายในปุ่ม
                         elevation: 5, // ความสูงของเงา
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
-                            20,
+                            10,
                           ), // การกำหนดรูปร่างของปุ่ม
                         ),
                       ),
-                      icon: const Icon(
-                        Icons.person_3_outlined,
-                        color: Color.fromARGB(255, 26, 25, 25),
-                      ),
+                      icon: const Icon(Icons.person_3_outlined,
+                          color: Colors.white),
                       label: const Text(
                         '\t\t\t\t\tEdit Profile',
                         style: TextStyle(
-                          fontFamily: 'CustomFont',
-                          fontSize: 16,
-                          fontWeight: FontWeight
-                              .normal, // This can be FontWeight.bold for the bold version
-                        ),
+                            fontFamily: 'CustomFont',
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white // Th
+                            // This can be FontWeight.bold for the bold version
+                            ),
                       ),
                     ),
                   ],
@@ -110,23 +107,24 @@ class _Login_logout_State extends State<Login_logout_> {
                         Edit_Picture();
                       },
                       style: TextButton.styleFrom(
-                        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
-                        backgroundColor: Colors.white, // สีของตัวอักษรภายในปุ่ม
+                        // สีของตัวอักษรภายในปุ่ม
                         elevation: 5, // ความสูงของเงา
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
-                              20), // การกำหนดรูปร่างของปุ่ม
+                              10), // การกำหนดรูปร่างของปุ่ม
                         ),
                       ),
-                      icon: const Icon(Icons.picture_as_pdf),
+                      icon:
+                          const Icon(Icons.picture_as_pdf, color: Colors.white),
                       label: const Text(
                         "\t\t\t\t\tEdit Picture",
                         style: TextStyle(
-                          fontFamily: 'CustomFont',
-                          fontSize: 16,
-                          fontWeight: FontWeight
-                              .normal, // This can be FontWeight.bold for the bold version
-                        ),
+                            fontFamily: 'CustomFont',
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors
+                                .white // Th // This can be FontWeight.bold for the bold version
+                            ),
                       ),
                     ),
                   ],
@@ -144,23 +142,23 @@ class _Login_logout_State extends State<Login_logout_> {
                         Setting();
                       },
                       style: TextButton.styleFrom(
-                        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
-                        backgroundColor: Colors.white, // สีของตัวอักษรภายในปุ่ม
+                        // สีของตัวอักษรภายในปุ่ม
                         elevation: 5, // ความสูงของเงา
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                               10), // การกำหนดรูปร่างของปุ่ม
                         ),
                       ),
-                      icon: const Icon(Icons.settings),
+                      icon: const Icon(Icons.settings, color: Colors.white),
                       label: const Text(
                         "\t\t\t\t\tSetting",
                         style: TextStyle(
-                          fontFamily: 'CustomFont',
-                          fontSize: 16,
-                          fontWeight: FontWeight
-                              .normal, // This can be FontWeight.bold for the bold version
-                        ),
+                            fontFamily: 'CustomFont',
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors
+                                .white // Th // This can be FontWeight.bold for the bold version
+                            ),
                       ),
                     ),
                   ],
@@ -169,35 +167,51 @@ class _Login_logout_State extends State<Login_logout_> {
               const SizedBox(
                 height: 30,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 0, 50, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    TextButton.icon(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Navigatorbar(),
-                          ),
-                        );
-                        _logout();
-                      },
-                      icon: const Icon(Icons.logout_outlined),
-                      label: const Text(
-                        '\t\t\t\t\tLogout',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontFamily: 'CustomFont',
-                          fontSize: 16,
-                          fontWeight: FontWeight
-                              .normal, // This can be FontWeight.bold for the bold version
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 280, horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TextButton.icon(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Color.fromARGB(211, 255, 1, 1)),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Navigatorbar(),
+                                  ),
+                                );
+                                _logout();
+                              },
+                              icon: const Icon(Icons.logout_outlined,
+                                  color: Colors.white),
+                              label: const Text(
+                                '\t\t\t\t\tLogout',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  fontFamily: 'CustomFont',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight
+                                      .bold, // This can be FontWeight.bold for the bold version
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),

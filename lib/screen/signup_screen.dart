@@ -21,6 +21,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController idU = TextEditingController();
+  TextEditingController phone = TextEditingController();
   void saveLoginStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isLoggedIn', true);
@@ -30,14 +32,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (name.text != "" || email.text != "" || password.text != "") {
       try {
         String uri = "http://10.0.2.2/ko/register.php";
-        var res = await http.post(
-          Uri.parse(uri),
-          body: {
-            "name": name.text,
-            "email": email.text,
-            "password": password.text,
-          },
-        );
+        var res = await http.post(Uri.parse(uri), body: {
+          "name": name.text,
+          "email": email.text,
+          "password": password.text,
+          "idThai": idU.text,
+          "phone": phone.text,
+        });
         var response = jsonDecode(res.body);
         if (response["success"] == "true") {
           print("พิมถูกละไอสัส");
@@ -180,16 +181,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: TextFormField(
                           obscureText: true,
                           decoration: InputDecoration(
-                            hintText: "Password",
+                            hintText: "รหัสบัตรประชาชน",
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(18),
                                 borderSide: BorderSide.none),
                             fillColor: const Color.fromARGB(255, 218, 199, 221)
                                 .withOpacity(0.1),
                             filled: true,
-                            prefixIcon: const Icon(Icons.password),
-                            labelText: 'Re-Type your Password',
+                            prefixIcon: const Icon(Icons.insert_drive_file),
+                            labelText: 'ID Number',
                           ),
+                          controller: idU,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      SizedBox(
+                        width: 350,
+                        child: TextFormField(
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintText: "เบอร์โทรศัพท์",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(18),
+                                borderSide: BorderSide.none),
+                            fillColor: const Color.fromARGB(255, 218, 199, 221)
+                                .withOpacity(0.1),
+                            filled: true,
+                            prefixIcon: const Icon(Icons.numbers),
+                            labelText: 'Phone number',
+                          ),
+                          controller: phone,
                         ),
                       ),
                       const SizedBox(

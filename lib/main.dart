@@ -15,7 +15,7 @@ class Myapp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       themeAnimationCurve: Curves.bounceIn,
-      theme: ThemeData.light(),
+      theme: ThemeData.dark(),
       home: Navigatorbar(),
     );
   }
