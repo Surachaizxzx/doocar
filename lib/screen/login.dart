@@ -34,8 +34,8 @@ class _LoginAppState extends State<LoginApp> {
         var $response = jsonDecode(res.body);
 
         if ($response["success"] == "true") {
-          _showMyDialoglogin("Login success");
           saveLoginStatus();
+          _showMyDialoglogin("เข้าสู่ระบบสำเร็จ");
         } else {
           print("some issue");
         }
@@ -59,12 +59,32 @@ class _LoginAppState extends State<LoginApp> {
         return Expanded(
           child: AlertDialog(
             backgroundColor: Color.fromARGB(255, 218, 199, 221),
-            title: const Text('Login successfully'),
-            content: Text(txtMsg),
+            title: const Text(
+              'Login successfully',
+              style: TextStyle(
+                fontSize: 30,
+                fontFamily: 'CustomFont',
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 2, 2, 2),
+              ),
+            ),
+            content: Text(
+              txtMsg,
+              style: TextStyle(
+                color: Colors.black,
+                fontFamily: 'CustomFont',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
               ),
               TextButton(
                 onPressed: () => Navigator.push(
@@ -73,32 +93,12 @@ class _LoginAppState extends State<LoginApp> {
                     builder: ((context) => Navigatorbar()),
                   ),
                 ),
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  void _showMyDialog(String txtMsg) async {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Expanded(
-          child: AlertDialog(
-            backgroundColor: Colors.amberAccent,
-            title: const Text('AlertDialog Title'),
-            content: Text(txtMsg),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'OK'),
-                child: const Text('OK'),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Colors.green,
+                  ),
+                ),
               ),
             ],
           ),
