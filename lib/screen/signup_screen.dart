@@ -5,7 +5,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:doocar/component/Navigator.dart';
 import 'package:doocar/screen/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -19,6 +21,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  void saveLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', true);
+  }
 
   Future<void> register() async {
     if (name.text != "" || email.text != "" || password.text != "") {
@@ -29,7 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           body: {
             "name": name.text,
             "email": email.text,
-            "password": password.text
+            "password": password.text,
           },
         );
         var response = jsonDecode(res.body);
@@ -194,6 +200,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             register();
+                            saveLoginStatus();
                           },
                           style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),

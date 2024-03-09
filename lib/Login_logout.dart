@@ -2,8 +2,6 @@ import 'package:doocar/component/Navigator.dart';
 import 'package:doocar/screen/login.dart';
 import 'package:flutter/material.dart';
 
-import 'screen/signup_screen.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login_logout_ extends StatefulWidget {
