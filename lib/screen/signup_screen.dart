@@ -29,29 +29,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   Future<void> register() async {
-    if (name.text != "" || email.text != "" || password.text != "") {
-      try {
-        String uri = "http://10.0.2.2/ko/register.php";
-        var res = await http.post(Uri.parse(uri), body: {
+    try {
+      String uri = "http://10.0.2.2/ko/register.php";
+      var res = await http.post(
+        Uri.parse(uri),
+        body: {
           "name": name.text,
           "email": email.text,
           "password": password.text,
           "idThai": idU.text,
-          "phone": phone.text,
-        });
-        var response = jsonDecode(res.body);
-        if (response["success"] == "true") {
-          print("พิมถูกละไอสัส");
-          saveLoginStatus();
-          _showMyDialogRegister('Register successfully.');
-        } else {
-          print("มึงมั่วละ");
-        }
-      } catch (e) {
-        print(e);
+          "phone": phone.text
+        },
+      );
+      var response = jsonDecode(res.body);
+      if (response["success"] == "true") {
+        print("พิมถูกละไอสัส");
+        saveLoginStatus();
+        _showMyDialogRegister('Register successfully.');
+      } else {
+        print("มึงมั่วละ");
       }
-    } else {
-      print("Please Fill All fileds");
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -62,12 +61,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
         return Expanded(
           child: AlertDialog(
             backgroundColor: Color.fromARGB(255, 218, 199, 221),
-            title: const Text('Register สำเร็จ'),
-            content: Text(txtMsg),
+            title: const Text(
+              'Register สำเร็จ',
+              style: TextStyle(
+                fontSize: 30,
+                fontFamily: 'CustomFont',
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 2, 2, 2),
+              ),
+            ),
+            content: Text(
+              txtMsg,
+              style: TextStyle(
+                color: Colors.black,
+                fontFamily: 'CustomFont',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
               ),
               TextButton(
                 onPressed: () => Navigator.push(
@@ -76,7 +95,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     builder: ((context) => Navigatorbar()),
                   ),
                 ),
-                child: const Text('OK'),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Colors.green,
+                  ),
+                ),
               ),
             ],
           ),
