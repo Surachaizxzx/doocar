@@ -41,6 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         var response = jsonDecode(res.body);
         if (response["success"] == "true") {
           print("พิมถูกละไอสัส");
+          saveLoginStatus();
           _showMyDialogRegister('Register successfully.');
         } else {
           print("มึงมั่วละ");
@@ -200,7 +201,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             register();
-                            saveLoginStatus();
                           },
                           style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),
