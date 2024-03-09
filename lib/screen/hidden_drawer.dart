@@ -1,8 +1,6 @@
 import 'package:doocar/Login_logout.dart';
 import 'package:flutter/material.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
-
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
@@ -48,12 +46,7 @@ class _NavBarState extends State<NavBar> {
               ),
             ),
           ),
-          const Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Login_logout_(),
-            ],
-          ),
+          Login_logout_(),
         ],
       ),
     );

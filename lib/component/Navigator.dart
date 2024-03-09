@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../screen/Pay_screen.dart';
 import '../screen/buycar_screen.dart';
 import '../screen/home_screen.dart';
-import '../screen/setting_screen.dart';
 
 class Navigatorbar extends StatefulWidget {
   const Navigatorbar({super.key});
@@ -25,10 +24,10 @@ class _NavigatorbarState extends State<Navigatorbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
+      drawer: const NavBar(),
       body: PageView(
         controller: _pageControlller,
-        children: <Widget>[
+        children: const <Widget>[
           Homescreen(),
           BuyMycar(),
           Pay_in_installments(),
@@ -36,7 +35,7 @@ class _NavigatorbarState extends State<Navigatorbar> {
       ),
       extendBody: true,
       bottomNavigationBar: RollingBottomBar(
-        color: Color.fromARGB(138, 255, 255, 255),
+        color: const Color.fromARGB(138, 255, 255, 255),
         controller: _pageControlller,
         flat: true,
         useActiveColorByDefault: false,

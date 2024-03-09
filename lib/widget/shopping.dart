@@ -1,4 +1,6 @@
 import 'package:doocar/screen/home_screen.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -83,11 +85,11 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                           color: FlutterFlowTheme.of(context).secondaryText,
                           size: 24,
                         ),
-                        Expanded(
+                        Container(
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                             child: Container(
-                              width: 200,
+                              width: 260,
                               child: TextFormField(
                                 controller: _model.textController,
                                 focusNode: _model.textFieldFocusNode,

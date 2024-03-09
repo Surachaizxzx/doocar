@@ -37,10 +37,7 @@ class Homescreen extends StatelessWidget {
   }
 }
 
-
-
-class ShoppingListviewModel
-    extends FlutterFlowModel<ShoppingListviewWidget> {
+class ShoppingListviewModel extends FlutterFlowModel<ShoppingListviewWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
