@@ -40,7 +40,7 @@ dependencies:
   rolling_bottom_bar: ^0.2.2
   animate_do: ^3.3.3
   shared_preferences: ^2.2.2
-  http: ^0.13.0
+  http: ^0.13.6
   flutterflow_ui: ^0.2.0+1
 
 dev_dependencies:

@@ -18,11 +18,11 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController name = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController idU = TextEditingController();
-  TextEditingController phone = TextEditingController();
+  TextEditingController uname = TextEditingController();
+  TextEditingController uemail = TextEditingController();
+  TextEditingController upassword = TextEditingController();
+  TextEditingController uidU = TextEditingController();
+  TextEditingController uphone = TextEditingController();
   void saveLoginStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isLoggedIn', true);
@@ -34,18 +34,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
       var res = await http.post(
         Uri.parse(uri),
         body: {
-          "name": name.text,
-          "email": email.text,
-          "password": password.text,
-          "idThai": idU.text,
-          "phone": phone.text
+          'name': uname.text,
+          'email': uemail.text,
+          'password': upassword.text,
+          'idThai': uidU.text,
+          'phone': uphone.text,
         },
       );
       var response = jsonDecode(res.body);
       if (response["success"] == "true") {
         print("พิมถูกละไอสัส");
         saveLoginStatus();
-        _showMyDialogRegister('Register successfully.');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => Navigatorbar()),
+          ),
+        );
       } else {
         print("มึงมั่วละ");
       }
@@ -60,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       builder: (BuildContext context) {
         return Expanded(
           child: AlertDialog(
-            backgroundColor: Color.fromARGB(255, 218, 199, 221),
+            backgroundColor: const Color.fromARGB(255, 218, 199, 221),
             title: const Text(
               'Register สำเร็จ',
               style: TextStyle(
@@ -72,7 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             content: Text(
               txtMsg,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontFamily: 'CustomFont',
                 fontWeight: FontWeight.bold,
@@ -92,7 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => Navigatorbar()),
+                    builder: ((context) => const Navigatorbar()),
                   ),
                 ),
                 child: const Text(
@@ -140,6 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         width: 350,
                         child: TextFormField(
+                          controller: uname,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: "Username",
@@ -152,7 +158,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             prefixIcon: const Icon(Icons.person),
                             labelText: 'Your name',
                           ),
-                          controller: name,
                         ),
                       ),
                       const SizedBox(
@@ -161,6 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         width: 350,
                         child: TextFormField(
+                          controller: uemail,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: "UserEmail",
@@ -173,7 +179,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             prefixIcon: const Icon(Icons.email),
                             labelText: 'Your E-Mail',
                           ),
-                          controller: email,
                         ),
                       ),
                       const SizedBox(
@@ -182,6 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         width: 350,
                         child: TextFormField(
+                          controller: upassword,
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: "Password",
@@ -194,7 +200,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             prefixIcon: const Icon(Icons.key),
                             labelText: 'Create your Password',
                           ),
-                          controller: password,
                         ),
                       ),
                       const SizedBox(
@@ -203,6 +208,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         width: 350,
                         child: TextFormField(
+                          controller: uidU,
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: "รหัสบัตรประชาชน",
@@ -215,15 +221,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             prefixIcon: const Icon(Icons.insert_drive_file),
                             labelText: 'ID Number',
                           ),
-                          controller: idU,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       SizedBox(
                         width: 350,
                         child: TextFormField(
+                          controller: uphone,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: "เบอร์โทรศัพท์",
@@ -236,7 +242,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             prefixIcon: const Icon(Icons.numbers),
                             labelText: 'Phone number',
                           ),
-                          controller: phone,
                         ),
                       ),
                       const SizedBox(
