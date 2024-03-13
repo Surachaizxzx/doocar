@@ -3,8 +3,10 @@
 import 'dart:convert';
 import 'package:animate_do/animate_do.dart';
 import 'package:doocar/component/Navigator.dart';
+import 'package:doocar/screen/home_screen.dart';
 import 'package:doocar/screen/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,16 +45,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
       );
       var response = jsonDecode(res.body);
       if (response["success"] == "true") {
-        print("พิมถูกละไอสัส");
         saveLoginStatus();
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: ((context) => Navigatorbar()),
+            builder: ((context) => const Navigatorbar()),
           ),
         );
-      } else {
-        print("มึงมั่วละ");
+      }
+      if (response["success"] == "false") {
+        _showMyDialogRegister("เกิดข้อผิดพลาดกรุณาสมัครใหม่");
       }
     } catch (e) {
       print(e);
@@ -67,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: AlertDialog(
             backgroundColor: const Color.fromARGB(255, 218, 199, 221),
             title: const Text(
-              'Register สำเร็จ',
+              'Register ข้อผิดพลาด',
               style: TextStyle(
                 fontSize: 30,
                 fontFamily: 'CustomFont',
@@ -97,7 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => const Navigatorbar()),
+                    builder: ((context) => const SignUpScreen()),
                   ),
                 ),
                 child: const Text(
@@ -119,176 +121,253 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SingleChildScrollView(
-          child: Center(
-            child: Form(
-              key: _formKey,
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset(
-                        'assets/images/3.png',
-                        width: 250,
-                        height: 150,
-                      ),
-                      const Text(
-                        'Sign Up',
-                        style: TextStyle(
-                            fontSize: 50, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      SizedBox(
-                        width: 350,
-                        child: TextFormField(
-                          controller: uname,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintText: "Username",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(18),
-                                borderSide: BorderSide.none),
-                            fillColor: const Color.fromARGB(255, 218, 199, 221)
-                                .withOpacity(0.1),
-                            filled: true,
-                            prefixIcon: const Icon(Icons.person),
-                            labelText: 'Your name',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 350,
-                        child: TextFormField(
-                          controller: uemail,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintText: "UserEmail",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(18),
-                                borderSide: BorderSide.none),
-                            fillColor: const Color.fromARGB(255, 218, 199, 221)
-                                .withOpacity(0.1),
-                            filled: true,
-                            prefixIcon: const Icon(Icons.email),
-                            labelText: 'Your E-Mail',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 350,
-                        child: TextFormField(
-                          controller: upassword,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: "Password",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(18),
-                                borderSide: BorderSide.none),
-                            fillColor: const Color.fromARGB(255, 218, 199, 221)
-                                .withOpacity(0.1),
-                            filled: true,
-                            prefixIcon: const Icon(Icons.key),
-                            labelText: 'Create your Password',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 350,
-                        child: TextFormField(
-                          controller: uidU,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: "รหัสบัตรประชาชน",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(18),
-                                borderSide: BorderSide.none),
-                            fillColor: const Color.fromARGB(255, 218, 199, 221)
-                                .withOpacity(0.1),
-                            filled: true,
-                            prefixIcon: const Icon(Icons.insert_drive_file),
-                            labelText: 'ID Number',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      SizedBox(
-                        width: 350,
-                        child: TextFormField(
-                          controller: uphone,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintText: "เบอร์โทรศัพท์",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(18),
-                                borderSide: BorderSide.none),
-                            fillColor: const Color.fromARGB(255, 218, 199, 221)
-                                .withOpacity(0.1),
-                            filled: true,
-                            prefixIcon: const Icon(Icons.numbers),
-                            labelText: 'Phone number',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 350,
-                        height: 60,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            register();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: const StadiumBorder(),
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            backgroundColor:
-                                const Color.fromARGB(255, 223, 187, 232),
-                          ),
-                          child: const Text(
-                            "Sign Up",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginApp(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          "Have a member ?",
-                          style: TextStyle(color: Colors.purple),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          centerTitle: true,
+          leadingWidth: 150,
+          leading: TextButton.icon(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginApp(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.arrow_back),
+            label: const Text(
+              "เข้าสู่ระบบ",
+              style: TextStyle(
+                fontFamily: 'CustomFont',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
+        ),
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Center(
+                child: Form(
+                  key: _formKey,
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.brown,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          SizedBox(
+                            width: 350,
+                            child: TextFormField(
+                              controller: uname,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                hintText: "Username",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide.none),
+                                fillColor:
+                                    const Color.fromARGB(255, 218, 199, 221)
+                                        .withOpacity(0.1),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.person),
+                                labelText: 'ชื่อบัญชี',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            width: 350,
+                            child: TextFormField(
+                              controller: uemail,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                hintText: "UserEmail",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide.none),
+                                fillColor:
+                                    const Color.fromARGB(255, 218, 199, 221)
+                                        .withOpacity(0.1),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.email),
+                                labelText: 'อีเมลล์',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            width: 350,
+                            child: TextFormField(
+                              controller: upassword,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Emtry';
+                                }
+                                return null;
+                              },
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                hintText: "Password",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide.none),
+                                fillColor:
+                                    const Color.fromARGB(255, 218, 199, 221)
+                                        .withOpacity(0.1),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.key),
+                                labelText: 'ป้อนรหัส',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            width: 350,
+                            child: TextFormField(
+                              controller: upassword,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Emtry';
+                                }
+                                return null;
+                              },
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                hintText: "Password",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide.none),
+                                fillColor:
+                                    const Color.fromARGB(255, 218, 199, 221)
+                                        .withOpacity(0.1),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.key),
+                                labelText: 'ป้อนรหัสอีกครั้ง',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            width: 350,
+                            child: TextFormField(
+                              controller: uidU,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                hintText: "ID number",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide.none),
+                                fillColor:
+                                    const Color.fromARGB(255, 218, 199, 221)
+                                        .withOpacity(0.1),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.insert_drive_file),
+                                labelText: 'รหัสบัตรประชาชน',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            width: 350,
+                            child: TextFormField(
+                              controller: uphone,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                hintText: "Phone number",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide.none),
+                                fillColor:
+                                    const Color.fromARGB(255, 218, 199, 221)
+                                        .withOpacity(0.1),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.numbers),
+                                labelText: 'เบอร์โทรศัพท์',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            width: 350,
+                            height: 60,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                register();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                shape: const StadiumBorder(),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 223, 187, 232),
+                              ),
+                              child: const Text(
+                                "Sign Up",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LoginApp(),
+                                    ),
+                                  );
+                                },
+                                child: const Text(
+                                  "Have a member ?",
+                                  style: TextStyle(color: Colors.purple),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 200,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

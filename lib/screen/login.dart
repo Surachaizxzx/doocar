@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:doocar/component/Navigator.dart';
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 import 'signup_screen.dart';
 
 import 'package:http/http.dart' as http;
@@ -18,6 +19,8 @@ class LoginApp extends StatefulWidget {
 class _LoginAppState extends State<LoginApp> {
   @override
   final formKey = GlobalKey<FormState>();
+  late SharedPreferences _prefs;
+  bool _isLoggedIn = false;
   TextEditingController name = TextEditingController();
   TextEditingController password = TextEditingController();
   Future<void> Signin() async {
@@ -52,13 +55,34 @@ class _LoginAppState extends State<LoginApp> {
     prefs.setBool('isLoggedIn', true);
   }
 
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    _prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = _prefs.getBool('isLoggedIn') ?? false;
+    setState(() {
+      _isLoggedIn = isLoggedIn;
+    });
+  }
+
+  Future<void> _logout() async {
+    // ตั้งค่า isLoggedIn เป็น false และบันทึกลง SharedPreferences
+    await _prefs.setBool('isLoggedIn', false);
+    setState(() {
+      _isLoggedIn = false;
+    });
+  }
+
   void _showMyDialoglogin(String txtMsg) async {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
         return Expanded(
           child: AlertDialog(
-            backgroundColor: Color.fromARGB(255, 218, 199, 221),
+            backgroundColor: const Color.fromARGB(255, 218, 199, 221),
             title: const Text(
               'Login successfully',
               style: TextStyle(
@@ -70,7 +94,7 @@ class _LoginAppState extends State<LoginApp> {
             ),
             content: Text(
               txtMsg,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontFamily: 'CustomFont',
                 fontWeight: FontWeight.bold,
@@ -78,7 +102,10 @@ class _LoginAppState extends State<LoginApp> {
             ),
             actions: <Widget>[
               TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
+                onPressed: () {
+                  Navigator.pop(context, 'Cancel');
+                  _logout();
+                },
                 child: const Text(
                   'Cancel',
                   style: TextStyle(
@@ -90,7 +117,7 @@ class _LoginAppState extends State<LoginApp> {
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => Navigatorbar()),
+                    builder: ((context) => const Navigatorbar()),
                   ),
                 ),
                 child: const Text(
@@ -112,6 +139,29 @@ class _LoginAppState extends State<LoginApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          leadingWidth: 150,
+          leading: TextButton.icon(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Homescreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.arrow_back),
+            label: const Text(
+              "หน้าหลัก",
+              style: TextStyle(
+                fontFamily: 'CustomFont',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
         backgroundColor: const Color(0xFFF5F5F5),
         body: Center(
           child: Form(
@@ -124,8 +174,8 @@ class _LoginAppState extends State<LoginApp> {
                     Image.asset(
                       'assets/images/3.png',
                       width: 300,
-                      height: 250,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      height: 150,
+                      color: const Color.fromARGB(255, 0, 0, 0),
                     ),
                     const Text(
                       'Welcome',

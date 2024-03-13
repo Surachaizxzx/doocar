@@ -173,8 +173,8 @@ class _Login_logout_State extends State<Login_logout_> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 280, horizontal: 10),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 280, horizontal: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -182,7 +182,7 @@ class _Login_logout_State extends State<Login_logout_> {
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(
-                                        Color.fromARGB(211, 255, 1, 1)),
+                                        const Color.fromARGB(211, 255, 1, 1)),
                               ),
                               onPressed: () {
                                 Navigator.push(
@@ -223,21 +223,16 @@ class _Login_logout_State extends State<Login_logout_> {
   Widget _loggedOutView() {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(20, 0, 50, 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text('You are not logged in!'),
-            ],
-          ),
-        ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(8, 0, 50, 0),
+          padding: const EdgeInsets.fromLTRB(160, 530, 0, 0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TextButton.icon(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(211, 255, 1, 1)),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -245,19 +240,17 @@ class _Login_logout_State extends State<Login_logout_> {
                       builder: (context) => const LoginApp(),
                     ),
                   );
+                  _logout();
                 },
-                icon: const Icon(
-                  Icons.login_outlined,
-                  color: Colors.black,
-                ),
+                icon: const Icon(Icons.login_outlined, color: Colors.white),
                 label: const Text(
-                  '\t\t\t\tLogIn now',
+                  '\t\t\tLogin',
                   style: TextStyle(
-                    color: Colors.red,
+                    color: Color.fromARGB(255, 255, 255, 255),
                     fontFamily: 'CustomFont',
                     fontSize: 16,
                     fontWeight: FontWeight
-                        .normal, // This can be FontWeight.bold for the bold version
+                        .bold, // This can be FontWeight.bold for the bold version
                   ),
                 ),
               ),
