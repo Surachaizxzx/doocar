@@ -1,3 +1,4 @@
+import 'package:doocar/Login_logout.dart';
 import 'package:flutter/material.dart';
 
 import 'hidden_drawer.dart';
@@ -14,7 +15,7 @@ class Pay_in_installments extends StatelessWidget {
         title: const Text('คำนวณค่างวดผ่อน'),
       ),
       body: const Column(
-        children: [],
+        children: [Login_logout_()],
       ),
     );
   }

@@ -29,9 +29,15 @@ class _Login_logout_State extends State<Login_logout_> {
     });
   }
 
+  void removeSession() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('session');
+  }
+
   Future<void> _logout() async {
     // ตั้งค่า isLoggedIn เป็น false และบันทึกลง SharedPreferences
     await _prefs.setBool('isLoggedIn', false);
+    removeSession();
     setState(() {
       _isLoggedIn = false;
     });

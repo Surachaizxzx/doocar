@@ -1,6 +1,7 @@
 // ignore_for_file: override_on_non_overriding_member, unused_import
 
 import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:doocar/component/Navigator.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,24 @@ class _LoginAppState extends State<LoginApp> {
   @override
   final formKey = GlobalKey<FormState>();
   late SharedPreferences _prefs;
+  late SharedPreferences prefs;
   bool _isLoggedIn = false;
   TextEditingController name = TextEditingController();
   TextEditingController password = TextEditingController();
+  Future<String?> getSession() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('session');
+  }
+
+  void printSession() async {
+    String? session = await getSession();
+    if (session != null) {
+      print('Session is ready');
+    } else {
+      print('unSession is ready');
+    }
+  }
+
   Future<void> Signin() async {
     if (name.text != "" || password.text != "") {
       try {
@@ -36,10 +52,10 @@ class _LoginAppState extends State<LoginApp> {
         );
         var $response = jsonDecode(res.body);
 
-        if ($response["success"] == "true") {
+        if ($response["status"] == "success") {
           saveLoginStatus();
           _showMyDialoglogin("เข้าสู่ระบบสำเร็จ");
-        } else {
+        } else if ($response["status"] == "error") {
           print("some issue");
         }
       } catch (e) {
@@ -68,9 +84,20 @@ class _LoginAppState extends State<LoginApp> {
     });
   }
 
+  void saveSession(String session) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('session', session);
+  }
+
+  void removeSession() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('session');
+  }
+
   Future<void> _logout() async {
     // ตั้งค่า isLoggedIn เป็น false และบันทึกลง SharedPreferences
     await _prefs.setBool('isLoggedIn', false);
+    removeSession();
     setState(() {
       _isLoggedIn = false;
     });
@@ -114,12 +141,16 @@ class _LoginAppState extends State<LoginApp> {
                 ),
               ),
               TextButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) => const Navigatorbar()),
-                  ),
-                ),
+                onPressed: () {
+                  saveSession(name.text);
+                  printSession();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => const Navigatorbar()),
+                    ),
+                  );
+                },
                 child: const Text(
                   'OK',
                   style: TextStyle(
@@ -165,12 +196,17 @@ class _LoginAppState extends State<LoginApp> {
         backgroundColor: const Color(0xFFF5F5F5),
         body: Center(
           child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: formKey,
             child: ListView(
               shrinkWrap: true,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    const SizedBox(
+                      height: 80,
+                    ),
                     Image.asset(
                       'assets/images/3.png',
                       width: 300,
@@ -199,9 +235,9 @@ class _LoginAppState extends State<LoginApp> {
                           prefixIcon: const Icon(Icons.person),
                           labelText: 'Name',
                         ),
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Empty';
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'กรุณาป้อนชื่อบัญชี';
                           }
                           return null;
                         },
@@ -226,7 +262,7 @@ class _LoginAppState extends State<LoginApp> {
                           labelText: 'Password',
                         ),
                         validator: (val) {
-                          if (val!.isEmpty) {
+                          if (val == null) {
                             return 'Empty';
                           }
                           return null;
@@ -247,6 +283,7 @@ class _LoginAppState extends State<LoginApp> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15))),
                         onPressed: () {
+                          // printSession();
                           Signin();
                         },
                         child: const Text(
