@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
+import '../component/Navigator.dart';
+
 export 'package:doocar/widget/shopping.dart';
 
 class ShoppingListviewWidget extends StatefulWidget {

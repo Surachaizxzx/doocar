@@ -86,14 +86,14 @@ class _Login_logout_State extends State<Login_logout_> {
                         ),
                       ),
                       icon: const Icon(Icons.person_3_outlined,
-                          color: Colors.white),
+                          color: Color.fromARGB(255, 0, 0, 0)),
                       label: const Text(
                         '\t\t\t\t\tEdit Profile',
                         style: TextStyle(
                             fontFamily: 'CustomFont',
                             fontSize: 16,
                             fontWeight: FontWeight.normal,
-                            color: Colors.white // Th
+                            color: Color.fromARGB(255, 0, 0, 0) // Th
                             // This can be FontWeight.bold for the bold version
                             ),
                       ),
@@ -120,16 +120,16 @@ class _Login_logout_State extends State<Login_logout_> {
                               10), // การกำหนดรูปร่างของปุ่ม
                         ),
                       ),
-                      icon:
-                          const Icon(Icons.picture_as_pdf, color: Colors.white),
+                      icon: const Icon(Icons.picture_as_pdf,
+                          color: Color.fromARGB(255, 0, 0, 0)),
                       label: const Text(
                         "\t\t\t\t\tEdit Picture",
                         style: TextStyle(
                             fontFamily: 'CustomFont',
                             fontSize: 16,
                             fontWeight: FontWeight.normal,
-                            color: Colors
-                                .white // Th // This can be FontWeight.bold for the bold version
+                            color: Color.fromARGB(255, 0, 0,
+                                0) // Th // This can be FontWeight.bold for the bold version
                             ),
                       ),
                     ),
@@ -155,16 +155,17 @@ class _Login_logout_State extends State<Login_logout_> {
                               10), // การกำหนดรูปร่างของปุ่ม
                         ),
                       ),
-                      icon: const Icon(Icons.settings, color: Colors.white),
+                      icon: const Icon(Icons.settings,
+                          color: Color.fromARGB(255, 0, 0, 0)),
                       label: const Text(
                         "\t\t\t\t\tSetting",
                         style: TextStyle(
-                            fontFamily: 'CustomFont',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colors
-                                .white // Th // This can be FontWeight.bold for the bold version
-                            ),
+                          fontFamily: 'CustomFont',
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          // Th // This can be FontWeight.bold for the bold version
+                        ),
                       ),
                     ),
                   ],
@@ -180,7 +181,7 @@ class _Login_logout_State extends State<Login_logout_> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 280, horizontal: 10),
+                            vertical: 260, horizontal: 30),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -202,7 +203,7 @@ class _Login_logout_State extends State<Login_logout_> {
                               icon: const Icon(Icons.logout_outlined,
                                   color: Colors.white),
                               label: const Text(
-                                '\t\t\t\t\tLogout',
+                                '\t\t\t\tLogout',
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 255, 255, 255),
                                   fontFamily: 'CustomFont',
@@ -230,9 +231,9 @@ class _Login_logout_State extends State<Login_logout_> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(160, 530, 0, 0),
+          padding: const EdgeInsets.fromLTRB(200, 510, 20, 30),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton.icon(
                 style: ButtonStyle(

@@ -59,6 +59,7 @@ class _NavBarState extends State<NavBar> {
 
   Widget _loggedInView() {
     return Drawer(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       child: FutureBuilder(
         future: _usersFuture,
         builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot) {
@@ -76,9 +77,18 @@ class _NavBarState extends State<NavBar> {
                     UserAccountsDrawerHeader(
                       accountName: Text(user.username),
                       accountEmail: Text(user.email),
-                      currentAccountPicture:
-                          Image.asset("assets/images/me.jpg"),
-                      currentAccountPictureSize: Size(70, 70),
+                      currentAccountPicture: CircleAvatar(
+                        child: ClipOval(
+                          child: Image.asset("assets/images/me.jpg"),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.pink,
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/2.png"),
+                            fit: BoxFit.cover),
+                      ),
+                      currentAccountPictureSize: const Size(70, 70),
                     ),
                     const Login_logout_(),
                   ],

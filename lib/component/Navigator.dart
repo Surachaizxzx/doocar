@@ -24,13 +24,13 @@ class _NavigatorbarState extends State<Navigatorbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavBar(),
       body: PageView(
         controller: _pageControlller,
         children: const <Widget>[
           Homescreen(),
           BuyMycar(),
           Pay_in_installments(),
+          NavBar(),
         ],
       ),
       extendBody: true,
@@ -42,14 +42,16 @@ class _NavigatorbarState extends State<Navigatorbar> {
         useActiveColorByDefault: false,
         items: const [
           RollingBottomBarItem(Icons.shopping_cart,
-              label: 'Shop', activeColor: Colors.redAccent),
+              label: 'หน้าเเรก', activeColor: Colors.redAccent),
           RollingBottomBarItem(
-            Icons.car_rental,
-            label: 'Mycar',
+            Icons.shopping_basket_outlined,
+            label: 'บุ๊คมาร์ค',
             activeColor: Colors.blueAccent,
           ),
           RollingBottomBarItem(Icons.attach_money,
-              label: 'Pay', activeColor: Colors.green),
+              label: 'ค่างวดผ่อน', activeColor: Colors.green),
+          RollingBottomBarItem(Icons.keyboard_control_sharp,
+              label: 'เมนู', activeColor: Color.fromARGB(255, 0, 0, 0)),
         ],
         enableIconRotation: true,
         onTap: (index) {

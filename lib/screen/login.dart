@@ -173,25 +173,6 @@ class _LoginAppState extends State<LoginApp> {
         appBar: AppBar(
           centerTitle: true,
           leadingWidth: 150,
-          leading: TextButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Homescreen(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.arrow_back),
-            label: const Text(
-              "หน้าหลัก",
-              style: TextStyle(
-                fontFamily: 'CustomFont',
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
         ),
         backgroundColor: const Color(0xFFF5F5F5),
         body: Center(
@@ -295,22 +276,38 @@ class _LoginAppState extends State<LoginApp> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(260, 0, 0, 100),
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            textStyle: const TextStyle(fontSize: 15),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Navigatorbar(),
+                              ),
+                            );
+                          },
+                          child: const Text("กลับไปหน้าหลัก"),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text("Sign Up now"),
-                      ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            textStyle: const TextStyle(fontSize: 15),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignUpScreen(),
+                              ),
+                            );
+                          },
+                          child: const Text("สมัครบัญชี"),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 300,

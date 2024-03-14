@@ -9,13 +9,14 @@ class Pay_in_installments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavBar(),
       appBar: AppBar(
+        centerTitle: true,
         leadingWidth: 100,
+        leading: Image.asset("assets/images/3.png"),
         title: const Text('คำนวณค่างวดผ่อน'),
       ),
       body: const Column(
-        children: [Login_logout_()],
+        children: [],
       ),
     );
   }
