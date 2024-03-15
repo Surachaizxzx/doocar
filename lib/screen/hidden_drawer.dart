@@ -305,7 +305,7 @@ class _NavBarState extends State<NavBar> {
           ),
           const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: const Column(
+              child: Column(
                 children: [
                   Row(
                     children: [Text('Visitor Account')],
