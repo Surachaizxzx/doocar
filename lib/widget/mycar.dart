@@ -15,6 +15,7 @@ class Mycar extends StatefulWidget {
 class _MycarState extends State<Mycar> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late SharedPreferences _prefs;
+
   bool _isLoggedIn = false;
   Future<void> _checkLoginStatus() async {
     _prefs = await SharedPreferences.getInstance();
@@ -43,48 +44,65 @@ class _MycarState extends State<Mycar> {
   }
 
   Widget _loggedOutView() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leadingWidth: 100,
+        leading: Image.asset("assets/images/3.png"),
+        title: const Text('รถที่สนใจ'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(100, 0, 0, 90),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextButton.icon(
-                style: const ButtonStyle(),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginApp(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton.icon(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color.fromARGB(211, 255, 1, 1)),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginApp(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.keyboard_alt_outlined,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  label: const Text(
+                    "Login now",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontFamily: 'CustomFont',
+                      fontSize: 15,
+                      fontWeight: FontWeight
+                          .normal, // This can be FontWeight.bold for the bold version
                     ),
-                  );
-                },
-                icon: const Icon(
-                  Icons.login,
-                  color: Colors.black,
-                ),
-                label: const Text(
-                  "Login now",
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontFamily: 'CustomFont',
-                    fontSize: 25,
-                    fontWeight: FontWeight
-                        .normal, // This can be FontWeight.bold for the bold version
                   ),
                 ),
-              ),
-            ),
+              ],
+            )
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 
   Widget _loggedInView() {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leadingWidth: 100,
+        leading: Image.asset("assets/images/3.png"),
+        title: const Text('คำนวณค่างวดผ่อน'),
+      ),
       key: scaffoldKey,
       body: Column(
         mainAxisSize: MainAxisSize.max,

@@ -8,11 +8,6 @@ class BuyMycar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
-      appBar: AppBar(
-        leadingWidth: 100,
-        title: const Text('สินค้าที่เลือก'),
-      ),
       body: Mycar(),
     );
   }

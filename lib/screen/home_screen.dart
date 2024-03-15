@@ -1,5 +1,6 @@
 import 'package:doocar/widget/shopping.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:doocar/widget/shopping.dart' show ShoppingListviewWidget;
 
@@ -11,9 +12,10 @@ class Homescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
       appBar: AppBar(
+        leading: Image.asset("assets/images/3.png"),
         leadingWidth: 100,
+        centerTitle: true,
         title: const Text('ร้านค้า'),
         actions: <Widget>[
           IconButton(

@@ -1,7 +1,7 @@
 import 'package:doocar/component/Navigator.dart';
 import 'package:doocar/screen/login.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login_logout_ extends StatefulWidget {
@@ -29,9 +29,15 @@ class _Login_logout_State extends State<Login_logout_> {
     });
   }
 
+  void removeSession() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('session');
+  }
+
   Future<void> _logout() async {
     // ตั้งค่า isLoggedIn เป็น false และบันทึกลง SharedPreferences
     await _prefs.setBool('isLoggedIn', false);
+    removeSession();
     setState(() {
       _isLoggedIn = false;
     });
@@ -57,187 +63,22 @@ class _Login_logout_State extends State<Login_logout_> {
   }
 
   Widget _loggedInView() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 0, 50, 0),
-                child: Row(
-                  children: [
-                    TextButton.icon(
-                      onPressed: () {
-                        Edit_Profile();
-                      },
-                      style: TextButton.styleFrom(
-                        elevation: 5, // ความสูงของเงา
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            10,
-                          ), // การกำหนดรูปร่างของปุ่ม
-                        ),
-                      ),
-                      icon: const Icon(Icons.person_3_outlined,
-                          color: Colors.white),
-                      label: const Text(
-                        '\t\t\t\t\tEdit Profile',
-                        style: TextStyle(
-                            fontFamily: 'CustomFont',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.white // Th
-                            // This can be FontWeight.bold for the bold version
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 0, 50, 0),
-                child: Row(
-                  children: [
-                    TextButton.icon(
-                      onPressed: () {
-                        Edit_Picture();
-                      },
-                      style: TextButton.styleFrom(
-                        // สีของตัวอักษรภายในปุ่ม
-                        elevation: 5, // ความสูงของเงา
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              10), // การกำหนดรูปร่างของปุ่ม
-                        ),
-                      ),
-                      icon:
-                          const Icon(Icons.picture_as_pdf, color: Colors.white),
-                      label: const Text(
-                        "\t\t\t\t\tEdit Picture",
-                        style: TextStyle(
-                            fontFamily: 'CustomFont',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colors
-                                .white // Th // This can be FontWeight.bold for the bold version
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 0, 50, 0),
-                child: Row(
-                  children: [
-                    TextButton.icon(
-                      onPressed: () {
-                        Setting();
-                      },
-                      style: TextButton.styleFrom(
-                        // สีของตัวอักษรภายในปุ่ม
-                        elevation: 5, // ความสูงของเงา
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              10), // การกำหนดรูปร่างของปุ่ม
-                        ),
-                      ),
-                      icon: const Icon(Icons.settings, color: Colors.white),
-                      label: const Text(
-                        "\t\t\t\t\tSetting",
-                        style: TextStyle(
-                            fontFamily: 'CustomFont',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colors
-                                .white // Th // This can be FontWeight.bold for the bold version
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 280, horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            TextButton.icon(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Color.fromARGB(211, 255, 1, 1)),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const Navigatorbar(),
-                                  ),
-                                );
-                                _logout();
-                              },
-                              icon: const Icon(Icons.logout_outlined,
-                                  color: Colors.white),
-                              label: const Text(
-                                '\t\t\t\t\tLogout',
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  fontFamily: 'CustomFont',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight
-                                      .bold, // This can be FontWeight.bold for the bold version
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+    return Scaffold();
   }
 
   Widget _loggedOutView() {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(20, 0, 50, 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text('You are not logged in!'),
-            ],
-          ),
-        ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(8, 0, 50, 0),
+          padding: const EdgeInsets.fromLTRB(200, 510, 20, 30),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton.icon(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(211, 255, 1, 1)),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -245,19 +86,17 @@ class _Login_logout_State extends State<Login_logout_> {
                       builder: (context) => const LoginApp(),
                     ),
                   );
+                  _logout();
                 },
-                icon: const Icon(
-                  Icons.login_outlined,
-                  color: Colors.black,
-                ),
+                icon: const Icon(Icons.login_outlined, color: Colors.white),
                 label: const Text(
-                  '\t\t\t\tLogIn now',
+                  '\t\t\tLogin',
                   style: TextStyle(
-                    color: Colors.red,
+                    color: Color.fromARGB(255, 255, 255, 255),
                     fontFamily: 'CustomFont',
                     fontSize: 16,
                     fontWeight: FontWeight
-                        .normal, // This can be FontWeight.bold for the bold version
+                        .bold, // This can be FontWeight.bold for the bold version
                   ),
                 ),
               ),

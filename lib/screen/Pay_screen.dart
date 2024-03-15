@@ -1,3 +1,4 @@
+import 'package:doocar/Login_logout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -48,14 +49,7 @@ class _MultiInputFormState extends State<MultiInputForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'คำนวณงวดผ่อน',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+     
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
