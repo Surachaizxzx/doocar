@@ -50,15 +50,9 @@ class _MultiInputFormState extends State<MultiInputForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-<<<<<<< Updated upstream
-        decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: AssetImage('assets/images/m.jpg'),
-=======
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/pay.png'),
->>>>>>> Stashed changes
             fit: BoxFit.cover,
           ),
         ),
