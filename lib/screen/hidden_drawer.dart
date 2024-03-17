@@ -186,17 +186,26 @@ class _NavBarState extends State<NavBar> {
                         ],
                       ),
                       Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [Text(user.username)],
-                              ),
-                              Row(
-                                children: [Text(user.email)],
-                              ),
-                            ],
-                          ))
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  child: Image.network(
+                                      "https://media.discordapp.net/attachments/937958580357853215/1218464834547486811/image.png?ex=6607c2ce&is=65f54dce&hm=7ce9e3d5a6b4fb98d8eefa13a7338fbf24058e8d310d8618ab51ea3ab863c491&=&format=webp&quality=lossless&width=381&height=385"),
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [Text(user.username)],
+                            ),
+                            Row(
+                              children: [Text(user.email)],
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 );
