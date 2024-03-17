@@ -12,8 +12,52 @@ class carDetail extends StatelessWidget {
       appBar: AppBar(
         leadingWidth:100,
         title: const Text('รายละเอียดรถ'),
+        
       ),
-      body: detail(),
+      
+      
+      body: const Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            
+            children: [
+              Text("ชื่อรุ่น Database",
+          style: TextStyle(
+            fontFamily: 'Customfont',
+            fontSize: 40,
+            fontWeight: FontWeight.w900,
+          ),
+          ),
+
+            ],
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          detail(),
+          SizedBox(
+            height: 100,
+          ),
+          Text("ข้อมูลของรถยนต์",
+            style: TextStyle(
+              fontFamily: 'Customfont',
+              fontSize: 22,
+              fontWeight: FontWeight.w900,
+            ),          
+          ),
+          Text("รายละเอียดรถยนต์ database ",style: TextStyle(
+            fontFamily: 'Customfont',
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+          ),
+        ],
+      ),
         
     );
   }
