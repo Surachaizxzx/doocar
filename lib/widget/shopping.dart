@@ -5,6 +5,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
 import '../component/Navigator.dart';
+import 'package:doocar/widget/banner_widget.dart';
 
 export 'package:doocar/widget/shopping.dart';
 
@@ -119,6 +120,7 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                             ),
                           ),
                         ),
+                        
                         FlutterFlowIconButton(
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderRadius: 20,
@@ -140,6 +142,10 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                   ),
                 ),
               ),
+              Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: BannerWidget(),
+            ),
               Expanded(
                 child: Column(
                   children: [
