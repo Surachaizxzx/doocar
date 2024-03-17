@@ -52,7 +52,7 @@ class _MultiInputFormState extends State<MultiInputForm> {
      
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
+          image: const DecorationImage(
             image: AssetImage('assets/images/m.jpg'),
             fit: BoxFit.cover,
           ),
