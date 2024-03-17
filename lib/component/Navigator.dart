@@ -1,4 +1,5 @@
 import 'package:doocar/screen/hidden_drawer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _NavigatorbarState extends State<Navigatorbar> {
         flat: true,
         useActiveColorByDefault: false,
         items: const [
-          RollingBottomBarItem(Icons.shopping_cart,
+          RollingBottomBarItem(FontAwesomeIcons.bagShopping,
               label: 'หน้าเเรก', activeColor: Colors.redAccent),
           RollingBottomBarItem(
             Icons.shopping_basket_outlined,
