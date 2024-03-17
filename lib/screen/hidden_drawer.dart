@@ -151,13 +151,13 @@ class _NavBarState extends State<NavBar> {
                                   ],
                                 ),
                                 const SizedBox(
-                                  height: 140,
+                                  height: 160,
                                 ),
                               ],
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 120),
+                            padding: const EdgeInsets.only(top: 140),
                             child: Container(
                               decoration: const BoxDecoration(
                                 color: Color.fromARGB(255, 255, 255, 255),
@@ -165,10 +165,10 @@ class _NavBarState extends State<NavBar> {
                                   topRight: Radius.circular(70.0),
                                 ),
                               ),
-                              child: const Column(
+                              child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Row(
+                                  const Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       SizedBox(
@@ -176,8 +176,22 @@ class _NavBarState extends State<NavBar> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 80,
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 20,
+                                      left: 40,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 40,
+                                          child: ClipOval(
+                                            child: Image.network(
+                                                "https://media.discordapp.net/attachments/937958580357853215/1218464834547486811/image.png?ex=6607c2ce&is=65f54dce&hm=7ce9e3d5a6b4fb98d8eefa13a7338fbf24058e8d310d8618ab51ea3ab863c491&=&format=webp&quality=lossless&width=381&height=385"),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -185,25 +199,18 @@ class _NavBarState extends State<NavBar> {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  child: Image.network(
-                                      "https://media.discordapp.net/attachments/937958580357853215/1218464834547486811/image.png?ex=6607c2ce&is=65f54dce&hm=7ce9e3d5a6b4fb98d8eefa13a7338fbf24058e8d310d8618ab51ea3ab863c491&=&format=webp&quality=lossless&width=381&height=385"),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [Text(user.username)],
-                            ),
-                            Row(
-                              children: [Text(user.email)],
-                            ),
-                          ],
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: 20,
+                            top: 20,
+                            right: 20,
+                            bottom: 20,
+                          ),
+                          child: Column(
+                            children: [],
+                          ),
                         ),
                       )
                     ],
