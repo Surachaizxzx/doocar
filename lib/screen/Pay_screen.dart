@@ -25,7 +25,7 @@ class _NumberInputFormState extends State<NumberInputForm> {
     return MaterialApp(
       title: 'Multiple Inputs',
       home: MultiInputForm(),
-      debugShowCheckedModeBanner: false, // เพิ่มบรรทัดนี้เพื่อลบแบนเนอร์ debug
+      debugShowCheckedModeBanner: false, 
     );
   }
 }
@@ -49,11 +49,16 @@ class _MultiInputFormState extends State<MultiInputForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: Container(
+<<<<<<< Updated upstream
         decoration: BoxDecoration(
-          image: DecorationImage(
+          image: const DecorationImage(
             image: AssetImage('assets/images/m.jpg'),
+=======
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/pay.png'),
+>>>>>>> Stashed changes
             fit: BoxFit.cover,
           ),
         ),
@@ -61,6 +66,7 @@ class _MultiInputFormState extends State<MultiInputForm> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
+               const SizedBox(height:200),
               TextFormField(
                 controller: _controller1,
                 keyboardType: TextInputType.number,
@@ -70,45 +76,50 @@ class _MultiInputFormState extends State<MultiInputForm> {
                 decoration: const InputDecoration(
                   labelText: 'ราคารถ',
                   border: OutlineInputBorder(),
+                  fillColor: Colors.white, 
+                  filled: true,
                 ),
               ),
               const SizedBox(height: 10),
               TextFormField(
                 controller: _controller2,
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
                 ],
                 decoration: const InputDecoration(
                   labelText: 'ดอกเบี้ย',
                   border: OutlineInputBorder(),
+                  fillColor: Colors.white, 
+                  filled: true,
                 ),
               ),
               const SizedBox(height: 10),
               TextFormField(
                 controller: _controller3,
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
                 ],
                 decoration: const InputDecoration(
-                  labelText: 'ดาวน์',
+                  labelText: 'เงินดาวน์',
                   border: OutlineInputBorder(),
+                  fillColor: Colors.white, 
+                  filled: true,
                 ),
               ),
               const SizedBox(height: 10),
               TextFormField(
                 controller: _controller4,
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
                 ],
                 decoration: const InputDecoration(
                   labelText: 'ปี',
                   border: OutlineInputBorder(),
+                  fillColor: Colors.white, 
+                  filled: true,
                 ),
               ),
               const SizedBox(height: 25),
@@ -122,66 +133,48 @@ class _MultiInputFormState extends State<MultiInputForm> {
                   double calculatedResult = price - ((price * price3) / 100);
                   double calculatedResult2 = (calculatedResult * price2) / 100;
                   double calculatedResult3 = calculatedResult2 * price4;
-                  double calculatedResult4 =
-                      calculatedResult3 + calculatedResult;
+                  double calculatedResult4 = calculatedResult3 + calculatedResult;
                   double calculatedResult5 = calculatedResult4 / (price4 * 12);
-                  setState(() {
-                    result = 'ผลลัพธ์ดาวน์: $calculatedResult บาท';
-                  });
-                  setState(() {
-                    result2 = 'ผลลัพธ์ดอกเบี้ย: $calculatedResult2 บาท/ต่อปี 1';
-                  });
-                  setState(() {
-                    result3 =
-                        'ราคาดอกเบี้ยต่อปีที่กำหนด: $calculatedResult3 บาท/'
-                        '$price4 ปี';
-                  });
-                  setState(() {
-                    result4 = 'ยอดที่ต้องจ่ายจริง: $calculatedResult4 บาท';
-                  });
-                  setState(() {
-                    result5 =
-                        'ยอดที่ต้องจ่ายจริง: $calculatedResult5 บาท/เดือน';
-                  });
+
+                  // แสดงผลลัพธ์เป็น Alert Dialog
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('ผลลัพธ์'),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('เงินดาวน์: $calculatedResult บาท'),
+                            Text('เงินดอกเบี้ย: $calculatedResult2 บาท/ต่อปี 1'),
+                            Text('ราคาดอกเบี้ยต่อปี: $calculatedResult3 บาท/$price4 ปี'),
+                            Text('ยอดที่ต้องจ่ายจริง: $calculatedResult4 บาท'),
+                            Text('ยอดที่ต้องจ่ายจริง: $calculatedResult5 บาท/เดือน'),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('ปิด'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
-                child: const Text('คำนวณ'),
+                style: ElevatedButton.styleFrom(
+    backgroundColor: Color.fromARGB(255, 0, 0, 0), 
+  ),
+                child: const Text('คำนวณ',style: TextStyle(
+      color: Colors.white,),
+                
+              ),
               ),
               const SizedBox(height: 50),
-              Text(
-                result,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-              Text(
-                result2,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-              Text(
-                result3,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-              Text(
-                result4,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-              Text(
-                result5,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
+              
             ],
           ),
         ),

@@ -12,7 +12,7 @@ class _BannerWidgetState extends State<BannerWidget> {
   int showedIndex = 0;
 
   final banners = [
-    "assets/images/car2.png",
+    "assets/images/car1.png",
     "assets/images/car2.png",
     "assets/images/car3.png",
     'assets/images/car4.png',
