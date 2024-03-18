@@ -235,7 +235,7 @@ class _NavBarState extends State<NavBar> {
                                       children: <Widget>[
                                         Image.asset(
                                           'assets/images/profile.png',
-                                          width: 50,
+                                          width: 70,
                                           height: 50,
                                         ), // รูปภาพของปุ่ม
                                         Text('โปรไฟล์'), // ข้อความบนปุ่ม
@@ -272,7 +272,7 @@ class _NavBarState extends State<NavBar> {
                                       children: <Widget>[
                                         Image.asset(
                                           'assets/images/bill.png',
-                                          width: 50,
+                                          width: 70,
                                           height: 50,
                                         ), // รูปภาพของปุ่ม
                                         Text('ใบเสร็จ'), // ข้อความบนปุ่ม
@@ -322,11 +322,11 @@ class _NavBarState extends State<NavBar> {
                                     child: Column(
                                       children: <Widget>[
                                         Image.asset(
-                                          'assets/images/resume.png',
+                                          'assets/images/car-dealer.png',
                                           width: 50,
                                           height: 50,
                                         ), // รูปภาพของปุ่ม
-                                        Text('ข้อมูลส่วนตัว'), // ข้อความบนปุ่ม
+                                        Text('รถที่สนใจ'), // ข้อความบนปุ่ม
                                       ],
                                     ),
                                   ),
@@ -337,76 +337,11 @@ class _NavBarState extends State<NavBar> {
                                     child: Column(
                                       children: <Widget>[
                                         Image.asset(
-                                          'assets/images/bill.png',
+                                          'assets/images/exit.png',
                                           width: 50,
                                           height: 50,
                                         ), // รูปภาพของปุ่ม
-                                        Text('ใบเสร็จ'), // ข้อความบนปุ่ม
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  TextButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                        const Color.fromARGB(
-                                            255, 255, 255, 255),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
-                                    },
-                                    child: Column(
-                                      children: <Widget>[
-                                        Image.asset(
-                                          'assets/images/profile.png',
-                                          width: 50,
-                                          height: 50,
-                                        ), // รูปภาพของปุ่ม
-                                        Text('โปรไฟล์'), // ข้อความบนปุ่ม
-                                      ],
-                                    ),
-                                  ),
-                                  TextButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                        const Color.fromARGB(
-                                            255, 255, 255, 255),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
-                                    },
-                                    child: Column(
-                                      children: <Widget>[
-                                        Image.asset(
-                                          'assets/images/resume.png',
-                                          width: 50,
-                                          height: 50,
-                                        ), // รูปภาพของปุ่ม
-                                        Text('ข้อมูลส่วนตัว'), // ข้อความบนปุ่ม
-                                      ],
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
-                                    },
-                                    child: Column(
-                                      children: <Widget>[
-                                        Image.asset(
-                                          'assets/images/bill.png',
-                                          width: 50,
-                                          height: 50,
-                                        ), // รูปภาพของปุ่ม
-                                        Text('ใบเสร็จ'), // ข้อความบนปุ่ม
+                                        Text('ออกจากระบบ'), // ข้อความบนปุ่ม
                                       ],
                                     ),
                                   ),
