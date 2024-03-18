@@ -8,11 +8,11 @@ class detail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Column(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -21,7 +21,7 @@ class detail extends StatelessWidget {
               style: TextStyle(fontSize: 22, color: Colors.black,fontWeight: FontWeight.w900),
             ),
             SizedBox(
-          height: 10,
+          width: 10,
         ),
             Text(
               "รถยนต์มือสอง",
@@ -32,7 +32,7 @@ class detail extends StatelessWidget {
         SizedBox(
           width: 20,
         ),
-        Column(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -41,7 +41,7 @@ class detail extends StatelessWidget {
               style: TextStyle(fontSize: 22, color: Colors.black,fontWeight: FontWeight.w900),
             ),
             SizedBox(
-          height: 10,
+          width: 10,
         ),
             Text(
               "บาท",
@@ -51,6 +51,23 @@ class detail extends StatelessWidget {
         ),
         SizedBox(
           width: 20,
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Text(
+              "ข้อมูลของรถยนต์",
+              style: TextStyle(fontSize: 22, color: Colors.black,fontWeight: FontWeight.w900),
+            ),
+            SizedBox(
+          width: 10,
+        ),
+            Text(
+              "รายละเอียดรถยนต์ database",
+              style: TextStyle(fontSize: 15, color: Colors.black,fontWeight: FontWeight.w600),
+            ),
+          ],
         ),
       ],
     );
