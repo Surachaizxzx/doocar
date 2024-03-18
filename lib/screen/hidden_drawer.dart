@@ -90,6 +90,9 @@ class _NavBarState extends State<NavBar> {
               itemBuilder: (BuildContext context, int index) {
                 User user = snapshot.data![index];
                 return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
                   child: Column(
                     children: [
                       Stack(
@@ -160,7 +163,7 @@ class _NavBarState extends State<NavBar> {
                             padding: const EdgeInsets.only(top: 140),
                             child: Container(
                               decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 255, 255, 255),
+                                color: Colors.white,
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(70.0),
                                 ),
@@ -199,20 +202,220 @@ class _NavBarState extends State<NavBar> {
                           ),
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: 20,
-                            top: 20,
-                            right: 20,
-                            bottom: 20,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 20,
+                          top: 20,
+                          right: 20,
+                          bottom: 20,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
                           ),
                           child: Column(
-                            children: [],
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                    },
+                                    child: Column(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/profile.png',
+                                          width: 50,
+                                          height: 50,
+                                        ), // รูปภาพของปุ่ม
+                                        Text('โปรไฟล์'), // ข้อความบนปุ่ม
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                    },
+                                    child: Column(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/resume.png',
+                                          width: 50,
+                                          height: 50,
+                                        ), // รูปภาพของปุ่ม
+                                        Text('ข้อมูลส่วนตัว'), // ข้อความบนปุ่ม
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                    },
+                                    child: Column(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/bill.png',
+                                          width: 50,
+                                          height: 50,
+                                        ), // รูปภาพของปุ่ม
+                                        Text('ใบเสร็จ'), // ข้อความบนปุ่ม
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                    },
+                                    child: Column(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/seller.png',
+                                          width: 50,
+                                          height: 50,
+                                        ), // รูปภาพของปุ่ม
+                                        Text(
+                                            'เลือกซื้อสินค้า'), // ข้อความบนปุ่ม
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                    },
+                                    child: Column(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/resume.png',
+                                          width: 50,
+                                          height: 50,
+                                        ), // รูปภาพของปุ่ม
+                                        Text('ข้อมูลส่วนตัว'), // ข้อความบนปุ่ม
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                    },
+                                    child: Column(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/bill.png',
+                                          width: 50,
+                                          height: 50,
+                                        ), // รูปภาพของปุ่ม
+                                        Text('ใบเสร็จ'), // ข้อความบนปุ่ม
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                    },
+                                    child: Column(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/profile.png',
+                                          width: 50,
+                                          height: 50,
+                                        ), // รูปภาพของปุ่ม
+                                        Text('โปรไฟล์'), // ข้อความบนปุ่ม
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                    },
+                                    child: Column(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/resume.png',
+                                          width: 50,
+                                          height: 50,
+                                        ), // รูปภาพของปุ่ม
+                                        Text('ข้อมูลส่วนตัว'), // ข้อความบนปุ่ม
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                    },
+                                    child: Column(
+                                      children: <Widget>[
+                                        Image.asset(
+                                          'assets/images/bill.png',
+                                          width: 50,
+                                          height: 50,
+                                        ), // รูปภาพของปุ่ม
+                                        Text('ใบเสร็จ'), // ข้อความบนปุ่ม
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 );

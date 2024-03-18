@@ -170,11 +170,7 @@ class _LoginAppState extends State<LoginApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          leadingWidth: 150,
-        ),
-        backgroundColor: const Color(0xFFF5F5F5),
+        backgroundColor: Colors.white,
         body: Center(
           child: Form(
             autovalidateMode: AutovalidateMode.onUserInteraction,
