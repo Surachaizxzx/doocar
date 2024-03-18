@@ -18,7 +18,7 @@ class carDetail extends StatelessWidget {
       
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         children: [
           
           Row(
