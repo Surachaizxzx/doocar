@@ -43,19 +43,19 @@ class carDetail extends StatelessWidget {
           SizedBox(
             height: 100,
           ),
-          Text("ข้อมูลของรถยนต์",
-            style: TextStyle(
-              fontFamily: 'Customfont',
-              fontSize: 22,
-              fontWeight: FontWeight.w900,
-            ),          
-          ),
-          Text("รายละเอียดรถยนต์ database ",style: TextStyle(
-            fontFamily: 'Customfont',
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-          ),
+          // Text("ข้อมูลของรถยนต์",
+          //   style: TextStyle(
+          //     fontFamily: 'Customfont',
+          //     fontSize: 22,
+          //     fontWeight: FontWeight.w900,
+          //   ),          
+          // ),
+          // Text("รายละเอียดรถยนต์ database ",style: TextStyle(
+          //   fontFamily: 'Customfont',
+          //   fontSize: 15,
+          //   fontWeight: FontWeight.w600,
+          // ),
+          // ),
         ],
       ),
         
