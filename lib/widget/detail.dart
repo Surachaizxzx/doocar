@@ -18,12 +18,12 @@ class detail extends StatelessWidget {
         Row(
           children: [
         Container(
-          margin: EdgeInsets.fromLTRB(10,10,50,0),
-          padding: EdgeInsets.all(20.0),
+          margin: EdgeInsets.fromLTRB(14,5,50,0),
+          padding: EdgeInsets.all(10.0),
           child: 
             const Text(
               "2011 Audi R8 4.2 (ปี 06-15) FSI 4WD Coupe",
-              style: TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.w900),
+              style: TextStyle(fontSize: 30, color: Colors.black,fontWeight: FontWeight.w900),
             ),
             //decoration: BoxDecoration(color: Colors.red),
             
@@ -38,12 +38,12 @@ class detail extends StatelessWidget {
             // Row(
             //   children:[
         Container(
-          margin: EdgeInsets.fromLTRB(10,10,50,0),
-          padding: EdgeInsets.all(20.0),
+          margin: EdgeInsets.fromLTRB(14,5,50,0),
+          padding: EdgeInsets.all(10.0),
           child: 
             const Text(
               "ประเภทรถยนต์",
-              style: TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.w900),
+              style: TextStyle(fontSize: 28, color: Colors.black,fontWeight: FontWeight.w900),
             ),
             //decoration: BoxDecoration(color: Colors.red),
         ),
@@ -53,12 +53,12 @@ class detail extends StatelessWidget {
             // Row(
             //   children:[
         Container(
-          margin: EdgeInsets.fromLTRB(10,10,50,0),
-          padding: EdgeInsets.all(20.0),
+          margin: EdgeInsets.fromLTRB(14,5,50,0),
+          padding: EdgeInsets.all(10.0),
               child: 
             const Text(
               "รถสปอร์ต",
-              style: TextStyle(fontSize: 15, color: Colors.black,fontWeight: FontWeight.w600),              
+              style: TextStyle(fontSize: 18, color: Colors.black,fontWeight: FontWeight.w600),              
             ),
             //decoration: BoxDecoration(color: Colors.blue),
             ),
@@ -67,19 +67,19 @@ class detail extends StatelessWidget {
           ]
         ),
          const SizedBox(
-          height: 10,
+          height: 5,
         ),
         Row(
           children: [
             // Row(
             //   children:[
         Container(
-          margin: EdgeInsets.fromLTRB(10,10,50,0),
-          padding: EdgeInsets.all(20.0),
+          margin: EdgeInsets.fromLTRB(14,5,50,0),
+          padding: EdgeInsets.all(10.0),
           child: 
             const Text(
-              "ราคา",
-              style: TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.w900),
+              "ราคารถยนต์",
+              style: TextStyle(fontSize: 28, color: Colors.black,fontWeight: FontWeight.w900),
             ),
             //decoration: BoxDecoration(color: Colors.red),
         ),
@@ -89,12 +89,12 @@ class detail extends StatelessWidget {
             // Row(
             //   children:[
         Container(
-          margin: EdgeInsets.fromLTRB(10,10,50,0),
-          padding: EdgeInsets.all(20.0),
+          margin: EdgeInsets.fromLTRB(14,5,50,0),
+          padding: EdgeInsets.all(10.0),
               child: 
             const Text(
-              "4,250,000",
-              style: TextStyle(fontSize: 15, color: Colors.black,fontWeight: FontWeight.w600),              
+              "4,250,000 บาท",
+              style: TextStyle(fontSize: 18, color: Colors.black,fontWeight: FontWeight.w600),              
             ),
             //decoration: BoxDecoration(color: Colors.blue),
             ),
@@ -103,17 +103,17 @@ class detail extends StatelessWidget {
           ]
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
         Row(
           children: [
         Container(
-          margin: EdgeInsets.fromLTRB(10,10,50,0),
-          padding: EdgeInsets.all(20.0),
+          margin: EdgeInsets.fromLTRB(14,5,50,0),
+          padding: EdgeInsets.all(10.0),
           child: 
             const Text(
               "รายละเอียด",
-              style: TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.w900),
+              style: TextStyle(fontSize: 28, color: Colors.black,fontWeight: FontWeight.w900),
             ),
             //decoration: BoxDecoration(color: Colors.red),
         ),
@@ -122,12 +122,12 @@ class detail extends StatelessWidget {
         Row(
           children: [
         Container(
-          margin: EdgeInsets.fromLTRB(10,10,50,10),
-          padding: EdgeInsets.all(20.0),
+          margin: EdgeInsets.fromLTRB(14,5,50,10),
+          padding: EdgeInsets.all(10.0),
               child: 
             const Text(
               "รถสวยจัดมาก ( ใช้เพียงแค่ 40,000 KM. ) เท่านั้น !!!เพราะ จะเอาไปขับแค่เฉพาะ วันอาทิตย์ เท่านั้นเป็นรุ่นพิเศษ ( Carbon-Edition ) แล้วกล้ายืนยัน สภาพใหม่จัด เหมือนรถป้ายแดง ของจริงแน่นอนไม่ต้องกังวลใจ เพราะ รถคันนี้ ถนอมแบบสุดหัวใจ จริงๆ",
-              style: TextStyle(fontSize: 15, color: Colors.black,fontWeight: FontWeight.w600),              
+              style: TextStyle(fontSize: 18, color: Colors.black,fontWeight: FontWeight.w600),              
             ),
             //decoration: BoxDecoration(color: Colors.blue),
             ),
@@ -135,7 +135,11 @@ class detail extends StatelessWidget {
         // ),
           ]
         ),
+        const SizedBox(
+          height: 10,
+        ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
               child: Mybutton(onTap: () {
@@ -143,21 +147,23 @@ class detail extends StatelessWidget {
               }, hinText: "เพิ่มลงMycar",),
             ),
             Container(
-              child: Mybutton(onTap: () {}, hinText: "ซื้อ"),
-              //decoration: BoxDecoration(color: Colors.amber),
+              //padding: EdgeInsets.all(10),
+              child: Mybutton(onTap: () {}, hinText: "สั่งซื้อรถยนต์"),
+              //decoration: BoxDecoration(color: Colors.blue),
             ),
           ],
             
         ),
-        SizedBox(
-          height: 20,
+        const SizedBox(
+          height: 10,
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
               child: Mybutton(onTap: () {
                 
-              }, hinText: "เพิ่มลงMycar",),
+              }, hinText: "ติดต่อผู้ขาย",),
             ),
           ],
             
