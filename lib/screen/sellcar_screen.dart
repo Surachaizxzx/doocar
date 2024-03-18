@@ -1,3 +1,4 @@
+import 'package:doocar/widget/regisSell.dart';
 import 'package:flutter/material.dart';
 
 class sellcar extends StatelessWidget {
@@ -6,7 +7,7 @@ class sellcar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      body: regisSell(),
     );
   }
 }
