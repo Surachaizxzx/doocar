@@ -21,23 +21,23 @@ class carDetail extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   mainAxisSize: MainAxisSize.min,
             
-            children: [
-              Text("ชื่อรุ่น Database",
-          style: TextStyle(
-            fontFamily: 'Customfont',
-            fontSize: 40,
-            fontWeight: FontWeight.w900,
-          ),
-          ),
+          //   children: [
+          //     Text("ชื่อรุ่น Database",
+          // style: TextStyle(
+          //   fontFamily: 'Customfont',
+          //   fontSize: 40,
+          //   fontWeight: FontWeight.w900,
+          // ),
+          // ),
 
-            ],
-          ),
+          //   ],
+          // ),
           SizedBox(
-            height: 100,
+            height: 2,
           ),
           detail(),
           SizedBox(
