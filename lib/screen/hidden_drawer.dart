@@ -1,8 +1,8 @@
 import 'package:doocar/Login_logout.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:doocar/service/classuser.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
@@ -86,10 +86,15 @@ class _NavBarState extends State<NavBar> {
             return const Login_logout_();
           } else {
             return ListView.builder(
-              itemCount: snapshot.data!.length,
+              shrinkWrap: true,
+              itemCount: 1,
+              physics: NeverScrollableScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
                 User user = snapshot.data![index];
                 return Container(
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 247, 228, 162),
+                  ),
                   child: Column(
                     children: [
                       Stack(
@@ -151,22 +156,22 @@ class _NavBarState extends State<NavBar> {
                                   ],
                                 ),
                                 const SizedBox(
-                                  height: 160,
+                                  height: 80,
                                 ),
                               ],
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 140),
+                            padding: const EdgeInsets.only(top: 60),
                             child: Container(
                               decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 255, 255, 255),
+                                color: Color.fromARGB(255, 247, 228, 162),
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(70.0),
                                 ),
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   const Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -181,15 +186,62 @@ class _NavBarState extends State<NavBar> {
                                       top: 20,
                                       left: 40,
                                     ),
-                                    child: Row(
+                                    child: Column(
                                       children: [
-                                        CircleAvatar(
-                                          radius: 40,
-                                          child: ClipOval(
-                                            child: Image.network(
-                                                "https://media.discordapp.net/attachments/937958580357853215/1218464834547486811/image.png?ex=6607c2ce&is=65f54dce&hm=7ce9e3d5a6b4fb98d8eefa13a7338fbf24058e8d310d8618ab51ea3ab863c491&=&format=webp&quality=lossless&width=381&height=385"),
+                                        UserAccountsDrawerHeader(
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromARGB(
+                                                96, 219, 217, 200),
+                                            border: Border.all(
+                                              width: 5,
+                                              color: Colors.white,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                              Radius.circular(
+                                                20,
+                                              ),
+                                            ),
                                           ),
-                                        )
+                                          margin: EdgeInsets.only(right: 40),
+                                          currentAccountPicture: Container(
+                                            width: 100,
+                                            height: 100,
+                                            decoration: BoxDecoration(
+                                              color: const Color.fromARGB(
+                                                  96, 219, 217, 200),
+                                              border: Border.all(
+                                                width: 5,
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                Radius.circular(
+                                                  100,
+                                                ),
+                                              ),
+                                            ),
+                                            child: CircleAvatar(
+                                              child: ClipOval(
+                                                child: Image.asset(
+                                                  'assets/images/me.jpg',
+                                                  width: 100,
+                                                  height: 100,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          accountName: Text(
+                                            user.username,
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                          accountEmail: Text(
+                                            user.email,
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -199,19 +251,379 @@ class _NavBarState extends State<NavBar> {
                           ),
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: 20,
-                            top: 20,
-                            right: 20,
-                            bottom: 20,
+                      Divider(
+                        color: Colors.black, // Specify the color of the line
+                        thickness: 2, // Specify the thickness of the line
+                        indent: 20, // Specify the starting padding of the line
+                        endIndent: 20, // Specify the ending padding of the line
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 20,
+                          top: 3,
+                          right: 20,
+                          bottom: 20,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(96, 219, 217, 200),
+                            border: Border.all(
+                              width: 5,
+                              color: Colors.white,
+                            ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(
+                                30,
+                              ),
+                            ),
                           ),
                           child: Column(
-                            children: [],
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                  bottom: 10,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          const Color.fromARGB(
+                                              96, 219, 217, 200),
+                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                18.0), // กำหนดรัศมีของขอบปุ่ม
+                                            side: const BorderSide(
+                                              color: Colors.white, width: 4,
+                                              // กำหนดสีขอบของปุ่ม
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Image.asset(
+                                            'assets/images/user.png',
+                                            width: 70,
+                                            height: 50,
+                                          ), // รูปภาพของปุ่ม
+                                          const Text(
+                                            'โปรไฟล์',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
+                                        ],
+                                      ),
+                                    ),
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          const Color.fromARGB(
+                                              96, 219, 217, 200),
+                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                18.0), // กำหนดรัศมีของขอบปุ่ม
+                                            side: const BorderSide(
+                                              color: Colors.white, width: 4,
+                                              // กำหนดสีขอบของปุ่ม
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Image.asset(
+                                            'assets/images/resume.png',
+                                            width: 50,
+                                            height: 50,
+                                          ), // รูปภาพของปุ่ม
+                                          const Text(
+                                            'ข้อมูลส่วนตัว',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
+                                        ],
+                                      ),
+                                    ),
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          const Color.fromARGB(
+                                              96, 219, 217, 200),
+                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                18.0), // กำหนดรัศมีของขอบปุ่ม
+                                            side: const BorderSide(
+                                              color: Colors.white, width: 4,
+                                              // กำหนดสีขอบของปุ่ม
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Image.asset(
+                                            'assets/images/payment.png',
+                                            width: 70,
+                                            height: 50,
+                                          ), // รูปภาพของปุ่ม
+                                          const Text(
+                                            'ใบเสร็จ',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                  bottom: 10,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          const Color.fromARGB(
+                                              96, 219, 217, 200),
+                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                18.0), // กำหนดรัศมีของขอบปุ่ม
+                                            side: const BorderSide(
+                                              color: Colors.white, width: 4,
+                                              // กำหนดสีขอบของปุ่ม
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Image.asset(
+                                            'assets/images/seller.png',
+                                            width: 50,
+                                            height: 50,
+                                          ), // รูปภาพของปุ่ม
+                                          const Text(
+                                            'เลือกซื้อสินค้า',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
+                                        ],
+                                      ),
+                                    ),
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          const Color.fromARGB(
+                                              96, 219, 217, 200),
+                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                18.0), // กำหนดรัศมีของขอบปุ่ม
+                                            side: const BorderSide(
+                                              color: Colors.white, width: 4,
+                                              // กำหนดสีขอบของปุ่ม
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Image.asset(
+                                            'assets/images/car-dealer.png',
+                                            width: 50,
+                                            height: 50,
+                                          ), // รูปภาพของปุ่ม
+                                          const Text(
+                                            'รถที่สนใจ',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
+                                        ],
+                                      ),
+                                    ),
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          const Color.fromARGB(
+                                              96, 219, 217, 200),
+                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                18.0), // กำหนดรัศมีของขอบปุ่ม
+                                            side: const BorderSide(
+                                              color: Colors.white, width: 4,
+                                              // กำหนดสีขอบของปุ่ม
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginApp(),
+                                          ),
+                                        );
+                                        _logout();
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Image.asset(
+                                            'assets/images/exit.png',
+                                            width: 50,
+                                            height: 50,
+                                          ), // รูปภาพของปุ่ม
+                                          const Text(
+                                            'ออกจากระบบ',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Column(
+                              children: [
+                                Image.asset(
+                                  "assets/images/car-insurance.png",
+                                  width: 100,
+                                  height: 70,
+                                ),
+                              ],
+                            ),
+                            const Column(
+                              children: [
+                                Text(
+                                  "ไมล์เดิม 100%",
+                                  style: TextStyle(
+                                    fontFamily: 'CustomFont',
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                TextButton(
+                                    onPressed: () {},
+                                    child: Image.asset(
+                                      "assets/images/accept.png",
+                                      width: 20,
+                                      height: 20,
+                                    ))
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, top: 20, bottom: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Column(
+                              children: [
+                                Image.asset(
+                                  "assets/images/car.png",
+                                  width: 100,
+                                  height: 70,
+                                ),
+                              ],
+                            ),
+                            const Column(
+                              children: [
+                                Text(
+                                  "รถคุณภาพดี",
+                                  style: TextStyle(
+                                    fontFamily: 'CustomFont',
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                TextButton(
+                                    onPressed: () {},
+                                    child: Image.asset(
+                                      "assets/images/accept.png",
+                                      width: 20,
+                                      height: 20,
+                                    ))
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 100,
                       )
                     ],
                   ),
