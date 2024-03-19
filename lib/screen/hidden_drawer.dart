@@ -86,8 +86,9 @@ class _NavBarState extends State<NavBar> {
             return const Login_logout_();
           } else {
             return ListView.builder(
-              shrinkWrap: false,
-              itemCount: snapshot.data!.length,
+              shrinkWrap: true,
+              itemCount: 1,
+              physics: NeverScrollableScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
                 User user = snapshot.data![index];
                 return Container(
@@ -155,13 +156,13 @@ class _NavBarState extends State<NavBar> {
                                   ],
                                 ),
                                 const SizedBox(
-                                  height: 130,
+                                  height: 80,
                                 ),
                               ],
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 140),
+                            padding: const EdgeInsets.only(top: 60),
                             child: Container(
                               decoration: const BoxDecoration(
                                 color: Color.fromARGB(255, 247, 228, 162),
@@ -230,8 +231,16 @@ class _NavBarState extends State<NavBar> {
                                               ),
                                             ),
                                           ),
-                                          accountName: Text(user.username),
-                                          accountEmail: Text(user.email),
+                                          accountName: Text(
+                                            user.username,
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                          accountEmail: Text(
+                                            user.email,
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -242,10 +251,16 @@ class _NavBarState extends State<NavBar> {
                           ),
                         ],
                       ),
+                      Divider(
+                        color: Colors.black, // Specify the color of the line
+                        thickness: 2, // Specify the thickness of the line
+                        indent: 20, // Specify the starting padding of the line
+                        endIndent: 20, // Specify the ending padding of the line
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(
                           left: 20,
-                          top: 20,
+                          top: 3,
                           right: 20,
                           bottom: 20,
                         ),
@@ -304,7 +319,10 @@ class _NavBarState extends State<NavBar> {
                                             height: 50,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
-                                              'โปรไฟล์'), // ข้อความบนปุ่ม
+                                            'โปรไฟล์',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
                                         ],
                                       ),
                                     ),
@@ -338,7 +356,10 @@ class _NavBarState extends State<NavBar> {
                                             height: 50,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
-                                              'ข้อมูลส่วนตัว'), // ข้อความบนปุ่ม
+                                            'ข้อมูลส่วนตัว',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
                                         ],
                                       ),
                                     ),
@@ -372,7 +393,10 @@ class _NavBarState extends State<NavBar> {
                                             height: 50,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
-                                              'ใบเสร็จ'), // ข้อความบนปุ่ม
+                                            'ใบเสร็จ',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
                                         ],
                                       ),
                                     ),
@@ -418,7 +442,10 @@ class _NavBarState extends State<NavBar> {
                                             height: 50,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
-                                              'เลือกซื้อสินค้า'), // ข้อความบนปุ่ม
+                                            'เลือกซื้อสินค้า',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
                                         ],
                                       ),
                                     ),
@@ -452,7 +479,10 @@ class _NavBarState extends State<NavBar> {
                                             height: 50,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
-                                              'รถที่สนใจ'), // ข้อความบนปุ่ม
+                                            'รถที่สนใจ',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
                                         ],
                                       ),
                                     ),
@@ -476,7 +506,14 @@ class _NavBarState extends State<NavBar> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginApp(),
+                                          ),
+                                        );
+                                        _logout();
                                       },
                                       child: Column(
                                         children: <Widget>[
@@ -486,7 +523,10 @@ class _NavBarState extends State<NavBar> {
                                             height: 50,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
-                                              'ออกจากระบบ'), // ข้อความบนปุ่ม
+                                            'ออกจากระบบ',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
                                         ],
                                       ),
                                     ),
@@ -541,7 +581,7 @@ class _NavBarState extends State<NavBar> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 20, right: 20, top: 20, bottom: 20),
+                            left: 20, right: 20, top: 20, bottom: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -582,6 +622,9 @@ class _NavBarState extends State<NavBar> {
                           ],
                         ),
                       ),
+                      SizedBox(
+                        height: 100,
+                      )
                     ],
                   ),
                 );
