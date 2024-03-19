@@ -30,7 +30,7 @@ class regisSell extends StatelessWidget {
             "กรุณากรอกข้อมูลและรายละเอียดของรถยนต์",
             style: TextStyle(
                 fontFamily: 'Customfont',
-                fontSize: 28,
+                fontSize: 34,
                 fontWeight: FontWeight.w900),
           ),
           // MytextField(
@@ -63,10 +63,10 @@ class regisSell extends StatelessWidget {
           //     obscureText: true,
           //     labelText: 'ข้อมูลรถยนต์'),
           const SizedBox(
-            height: 20,
+            height: 40,
           ),
           SizedBox(
-            width: 650,
+            width: 550,
             child: TextFormField(
               controller: CarnameController,
               validator: (value) {
@@ -90,10 +90,10 @@ class regisSell extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 40,
           ),
           SizedBox(
-            width: 350,
+            width: 550,
             child: TextFormField(
               controller: TypeController,
               validator: (value) {
@@ -117,10 +117,10 @@ class regisSell extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 40,
           ),
           SizedBox(
-            width: 350,
+            width: 550,
             child: TextFormField(
               controller: PriceController,
               validator: (value) {
@@ -144,10 +144,10 @@ class regisSell extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 40,
           ),
           SizedBox(
-            width: 350,
+            width: 550,
             child: TextFormField(
               controller: InfoController,
               validator: (value) {
@@ -170,6 +170,28 @@ class regisSell extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(
+            height: 50,
+          ),
+          SizedBox(
+                      width: 300,
+                      height: 60,
+                      child: ElevatedButton(
+                        onPressed: () {
+                        
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: const StadiumBorder(),
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          backgroundColor:
+                              const Color.fromARGB(255, 223, 187, 232),
+                        ),
+                        child: const Text(
+                          "ลงขายรถยนต์",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
             
           
         ],
