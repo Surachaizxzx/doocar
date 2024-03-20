@@ -1,4 +1,5 @@
 import 'package:doocar/Login_logout.dart';
+import 'package:doocar/screen/editinfo.dart';
 
 import 'package:flutter/material.dart';
 import 'package:doocar/service/classuser.dart';
@@ -16,6 +17,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   late SharedPreferences prefs;
+
   bool _isLoggedIn = false;
   Future<void> _checkLoginStatus() async {
     prefs = await SharedPreferences.getInstance();
@@ -60,6 +62,7 @@ class _NavBarState extends State<NavBar> {
   void initState() {
     super.initState();
     _checkLoginStatus();
+
     // ดึง session จาก SharedPreferences
     getSession().then((session) {
       setState(() {
@@ -309,13 +312,18 @@ class _NavBarState extends State<NavBar> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => EditInfo(),
+                                          ),
+                                        );
                                       },
                                       child: Column(
                                         children: <Widget>[
                                           Image.asset(
                                             'assets/images/user.png',
-                                            width: 70,
+                                            width: 85,
                                             height: 50,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
@@ -352,7 +360,7 @@ class _NavBarState extends State<NavBar> {
                                         children: <Widget>[
                                           Image.asset(
                                             'assets/images/resume.png',
-                                            width: 50,
+                                            width: 60,
                                             height: 50,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
@@ -389,7 +397,7 @@ class _NavBarState extends State<NavBar> {
                                         children: <Widget>[
                                           Image.asset(
                                             'assets/images/payment.png',
-                                            width: 70,
+                                            width: 80,
                                             height: 50,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
@@ -437,9 +445,130 @@ class _NavBarState extends State<NavBar> {
                                       child: Column(
                                         children: <Widget>[
                                           Image.asset(
+                                            'assets/images/post.png',
+                                            width: 50,
+                                            height: 60,
+                                          ), // รูปภาพของปุ่ม
+                                          const Text(
+                                            'โพสขายสินค้า',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
+                                        ],
+                                      ),
+                                    ),
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          const Color.fromARGB(
+                                              96, 219, 217, 200),
+                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                18.0), // กำหนดรัศมีของขอบปุ่ม
+                                            side: const BorderSide(
+                                              color: Colors.white, width: 4,
+                                              // กำหนดสีขอบของปุ่ม
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Image.asset(
+                                            'assets/images/shopping-cart.png',
+                                            width: 60,
+                                            height: 60,
+                                          ), // รูปภาพของปุ่ม
+                                          const Text(
+                                            'สินค้าของฉัน',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
+                                        ],
+                                      ),
+                                    ),
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          const Color.fromARGB(
+                                              96, 219, 217, 200),
+                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                18.0), // กำหนดรัศมีของขอบปุ่ม
+                                            side: const BorderSide(
+                                              color: Colors.white, width: 4,
+                                              // กำหนดสีขอบของปุ่ม
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {},
+                                      child: Column(
+                                        children: <Widget>[
+                                          Image.asset(
+                                            'assets/images/shop.png',
+                                            width: 80,
+                                            height: 60,
+                                          ), // รูปภาพของปุ่ม
+                                          const Text(
+                                            'ร้านสินค้า',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ), // ข้อความบนปุ่ม
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                  bottom: 10,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          const Color.fromARGB(
+                                              96, 219, 217, 200),
+                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                18.0), // กำหนดรัศมีของขอบปุ่ม
+                                            side: const BorderSide(
+                                              color: Colors.white, width: 4,
+                                              // กำหนดสีขอบของปุ่ม
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Image.asset(
                                             'assets/images/seller.png',
                                             width: 50,
-                                            height: 50,
+                                            height: 60,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
                                             'เลือกซื้อสินค้า',
@@ -475,8 +604,8 @@ class _NavBarState extends State<NavBar> {
                                         children: <Widget>[
                                           Image.asset(
                                             'assets/images/car-dealer.png',
-                                            width: 50,
-                                            height: 50,
+                                            width: 80,
+                                            height: 60,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
                                             'รถที่สนใจ',
@@ -520,7 +649,7 @@ class _NavBarState extends State<NavBar> {
                                           Image.asset(
                                             'assets/images/exit.png',
                                             width: 50,
-                                            height: 50,
+                                            height: 60,
                                           ), // รูปภาพของปุ่ม
                                           const Text(
                                             'ออกจากระบบ',
@@ -537,93 +666,8 @@ class _NavBarState extends State<NavBar> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Image.asset(
-                                  "assets/images/car-insurance.png",
-                                  width: 100,
-                                  height: 70,
-                                ),
-                              ],
-                            ),
-                            const Column(
-                              children: [
-                                Text(
-                                  "ไมล์เดิม 100%",
-                                  style: TextStyle(
-                                    fontFamily: 'CustomFont',
-                                    fontSize: 20,
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                TextButton(
-                                    onPressed: () {},
-                                    child: Image.asset(
-                                      "assets/images/accept.png",
-                                      width: 20,
-                                      height: 20,
-                                    ))
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20, right: 20, top: 20, bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Image.asset(
-                                  "assets/images/car.png",
-                                  width: 100,
-                                  height: 70,
-                                ),
-                              ],
-                            ),
-                            const Column(
-                              children: [
-                                Text(
-                                  "รถคุณภาพดี",
-                                  style: TextStyle(
-                                    fontFamily: 'CustomFont',
-                                    fontSize: 20,
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                TextButton(
-                                    onPressed: () {},
-                                    child: Image.asset(
-                                      "assets/images/accept.png",
-                                      width: 20,
-                                      height: 20,
-                                    ))
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
                       SizedBox(
-                        height: 100,
+                        height: 200,
                       )
                     ],
                   ),

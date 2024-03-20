@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 class User {
   final String username;
   final String email;
+
   User({
     required this.username,
     required this.email,
