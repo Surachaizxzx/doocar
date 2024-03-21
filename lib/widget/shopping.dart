@@ -81,6 +81,7 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(16, 0, 12, 0),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Icon(
@@ -88,39 +89,6 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                           color: FlutterFlowTheme.of(context).secondaryText,
                           size: 24,
                         ),
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                            child: Container(
-                              width: 260,
-                              child: TextFormField(
-                                controller: _model.textController,
-                                focusNode: _model.textFieldFocusNode,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Search listings...',
-                                  labelStyle:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                  hintStyle:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  focusedErrorBorder: InputBorder.none,
-                                  filled: true,
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                                cursorColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                validator: _model.textControllerValidator
-                                    .asValidator(context),
-                              ),
-                            ),
-                          ),
-                        ),
-                        
                         FlutterFlowIconButton(
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderRadius: 20,
@@ -143,9 +111,9 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                 ),
               ),
               Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              child: BannerWidget(),
-            ),
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: BannerWidget(),
+              ),
               Expanded(
                 child: Column(
                   children: [
