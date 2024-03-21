@@ -39,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Future<void> register() async {
     try {
-      String uri = "http://10.0.2.2/ko/register.php";
+      String uri = "https://doocar.000webhostapp.com/register.php";
       var res = await http.post(
         Uri.parse(uri),
         body: {

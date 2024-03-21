@@ -4,13 +4,17 @@ import 'package:http/http.dart' as http;
 class User {
   final String username;
   final String email;
+  final String id;
+
   User({
     required this.username,
     required this.email,
+    required this.id,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
+      id: json['id'],
       username: json['username'],
       email: json['email'],
     );
@@ -20,7 +24,7 @@ class User {
 class UserService {
   static Future<List<User>> getUsers(String session) async {
     final response = await http.post(
-      Uri.parse('http://10.0.2.2/ko/user.php'),
+      Uri.parse('https://doocar.000webhostapp.com/user.php'),
       body: {'session': session},
     );
 

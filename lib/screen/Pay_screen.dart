@@ -25,7 +25,7 @@ class _NumberInputFormState extends State<NumberInputForm> {
     return MaterialApp(
       title: 'Multiple Inputs',
       home: MultiInputForm(),
-      debugShowCheckedModeBanner: false, 
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -60,7 +60,7 @@ class _MultiInputFormState extends State<MultiInputForm> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-               const SizedBox(height:200),
+              const SizedBox(height: 200),
               TextFormField(
                 controller: _controller1,
                 keyboardType: TextInputType.number,
@@ -69,8 +69,14 @@ class _MultiInputFormState extends State<MultiInputForm> {
                 ],
                 decoration: const InputDecoration(
                   labelText: 'ราคารถ',
-                  border: OutlineInputBorder(),
-                  fillColor: Colors.white, 
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        20,
+                      ),
+                    ),
+                  ),
+                  fillColor: Colors.white,
                   filled: true,
                 ),
               ),
@@ -83,8 +89,14 @@ class _MultiInputFormState extends State<MultiInputForm> {
                 ],
                 decoration: const InputDecoration(
                   labelText: 'ดอกเบี้ย',
-                  border: OutlineInputBorder(),
-                  fillColor: Colors.white, 
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        20,
+                      ),
+                    ),
+                  ),
+                  fillColor: Colors.white,
                   filled: true,
                 ),
               ),
@@ -97,8 +109,14 @@ class _MultiInputFormState extends State<MultiInputForm> {
                 ],
                 decoration: const InputDecoration(
                   labelText: 'เงินดาวน์',
-                  border: OutlineInputBorder(),
-                  fillColor: Colors.white, 
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        20,
+                      ),
+                    ),
+                  ),
+                  fillColor: Colors.white,
                   filled: true,
                 ),
               ),
@@ -111,8 +129,14 @@ class _MultiInputFormState extends State<MultiInputForm> {
                 ],
                 decoration: const InputDecoration(
                   labelText: 'ปี',
-                  border: OutlineInputBorder(),
-                  fillColor: Colors.white, 
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        20,
+                      ),
+                    ),
+                  ),
+                  fillColor: Colors.white,
                   filled: true,
                 ),
               ),
@@ -127,7 +151,8 @@ class _MultiInputFormState extends State<MultiInputForm> {
                   double calculatedResult = price - ((price * price3) / 100);
                   double calculatedResult2 = (calculatedResult * price2) / 100;
                   double calculatedResult3 = calculatedResult2 * price4;
-                  double calculatedResult4 = calculatedResult3 + calculatedResult;
+                  double calculatedResult4 =
+                      calculatedResult3 + calculatedResult;
                   double calculatedResult5 = calculatedResult4 / (price4 * 12);
 
                   // แสดงผลลัพธ์เป็น Alert Dialog
@@ -141,10 +166,13 @@ class _MultiInputFormState extends State<MultiInputForm> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('เงินดาวน์: $calculatedResult บาท'),
-                            Text('เงินดอกเบี้ย: $calculatedResult2 บาท/ต่อปี 1'),
-                            Text('ราคาดอกเบี้ยต่อปี: $calculatedResult3 บาท/$price4 ปี'),
+                            Text(
+                                'เงินดอกเบี้ย: $calculatedResult2 บาท/ต่อปี 1'),
+                            Text(
+                                'ราคาดอกเบี้ยต่อปี: $calculatedResult3 บาท/$price4 ปี'),
                             Text('ยอดที่ต้องจ่ายจริง: $calculatedResult4 บาท'),
-                            Text('ยอดที่ต้องจ่ายจริง: $calculatedResult5 บาท/เดือน'),
+                            Text(
+                                'ยอดที่ต้องจ่ายจริง: $calculatedResult5 บาท/เดือน'),
                           ],
                         ),
                         actions: [
@@ -160,15 +188,16 @@ class _MultiInputFormState extends State<MultiInputForm> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-    backgroundColor: Color.fromARGB(255, 0, 0, 0), 
-  ),
-                child: const Text('คำนวณ',style: TextStyle(
-      color: Colors.white,),
-                
-              ),
+                  backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                ),
+                child: const Text(
+                  'คำนวณ',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
               const SizedBox(height: 50),
-              
             ],
           ),
         ),

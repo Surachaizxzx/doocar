@@ -1,7 +1,10 @@
 import 'package:doocar/Login_logout.dart';
+import 'package:doocar/screen/editinfo.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:doocar/service/classuser.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,6 +19,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   late SharedPreferences prefs;
+
   bool _isLoggedIn = false;
   Future<void> _checkLoginStatus() async {
     prefs = await SharedPreferences.getInstance();
@@ -60,6 +64,7 @@ class _NavBarState extends State<NavBar> {
   void initState() {
     super.initState();
     _checkLoginStatus();
+
     // ดึง session จาก SharedPreferences
     getSession().then((session) {
       setState(() {
@@ -111,12 +116,13 @@ class _NavBarState extends State<NavBar> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Column(
                                       children: [
                                         Text(
-                                          "เมนู",
+                                          "\t\tเมนู",
                                           style: TextStyle(
                                             fontSize: 30,
                                             color: Colors.white,
@@ -127,9 +133,6 @@ class _NavBarState extends State<NavBar> {
                                           ),
                                         ),
                                       ],
-                                    ),
-                                    const SizedBox(
-                                      width: 105,
                                     ),
                                     Column(
                                       children: [
@@ -184,11 +187,11 @@ class _NavBarState extends State<NavBar> {
                                   Padding(
                                     padding: const EdgeInsets.only(
                                       top: 20,
-                                      left: 40,
+                                      left: 30,
                                     ),
                                     child: Column(
                                       children: [
-                                        UserAccountsDrawerHeader(
+                                        Container(
                                           decoration: BoxDecoration(
                                             color: const Color.fromARGB(
                                                 96, 219, 217, 200),
@@ -204,42 +207,52 @@ class _NavBarState extends State<NavBar> {
                                             ),
                                           ),
                                           margin: EdgeInsets.only(right: 40),
-                                          currentAccountPicture: Container(
-                                            width: 100,
-                                            height: 100,
-                                            decoration: BoxDecoration(
-                                              color: const Color.fromARGB(
-                                                  96, 219, 217, 200),
-                                              border: Border.all(
-                                                width: 5,
-                                                color: Colors.white,
-                                              ),
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                Radius.circular(
-                                                  100,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(3.0),
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      width: 50,
+                                                      height: 50,
+                                                      child: ClipOval(
+                                                        child: CircleAvatar(
+                                                          child: Image.asset(
+                                                            "assets/images/me.jpg",
+                                                            width: 80,
+                                                            height: 80,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
                                                 ),
-                                              ),
-                                            ),
-                                            child: CircleAvatar(
-                                              child: ClipOval(
-                                                child: Image.asset(
-                                                  'assets/images/me.jpg',
-                                                  width: 100,
-                                                  height: 100,
+                                                SizedBox(
+                                                  height: 3,
                                                 ),
-                                              ),
+                                                Row(
+                                                  children: [
+                                                    Text("ID:\t\t\t"),
+                                                    Text(user.id),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text("Name:\t\t\t"),
+                                                    Text(user.username),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text("Email:\t\t\t"),
+                                                    Text(user.email),
+                                                  ],
+                                                ),
+                                              ],
                                             ),
-                                          ),
-                                          accountName: Text(
-                                            user.username,
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ),
-                                          accountEmail: Text(
-                                            user.email,
-                                            style:
-                                                TextStyle(color: Colors.black),
                                           ),
                                         ),
                                       ],
@@ -264,366 +277,13 @@ class _NavBarState extends State<NavBar> {
                           right: 20,
                           bottom: 20,
                         ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(96, 219, 217, 200),
-                            border: Border.all(
-                              width: 5,
-                              color: Colors.white,
-                            ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(
-                                30,
-                              ),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 10,
-                                  bottom: 10,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                          const Color.fromARGB(
-                                              96, 219, 217, 200),
-                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                18.0), // กำหนดรัศมีของขอบปุ่ม
-                                            side: const BorderSide(
-                                              color: Colors.white, width: 4,
-                                              // กำหนดสีขอบของปุ่ม
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
-                                      },
-                                      child: Column(
-                                        children: <Widget>[
-                                          Image.asset(
-                                            'assets/images/user.png',
-                                            width: 70,
-                                            height: 50,
-                                          ), // รูปภาพของปุ่ม
-                                          const Text(
-                                            'โปรไฟล์',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ), // ข้อความบนปุ่ม
-                                        ],
-                                      ),
-                                    ),
-                                    TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                          const Color.fromARGB(
-                                              96, 219, 217, 200),
-                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                18.0), // กำหนดรัศมีของขอบปุ่ม
-                                            side: const BorderSide(
-                                              color: Colors.white, width: 4,
-                                              // กำหนดสีขอบของปุ่ม
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
-                                      },
-                                      child: Column(
-                                        children: <Widget>[
-                                          Image.asset(
-                                            'assets/images/resume.png',
-                                            width: 50,
-                                            height: 50,
-                                          ), // รูปภาพของปุ่ม
-                                          const Text(
-                                            'ข้อมูลส่วนตัว',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ), // ข้อความบนปุ่ม
-                                        ],
-                                      ),
-                                    ),
-                                    TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                          const Color.fromARGB(
-                                              96, 219, 217, 200),
-                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                18.0), // กำหนดรัศมีของขอบปุ่ม
-                                            side: const BorderSide(
-                                              color: Colors.white, width: 4,
-                                              // กำหนดสีขอบของปุ่ม
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
-                                      },
-                                      child: Column(
-                                        children: <Widget>[
-                                          Image.asset(
-                                            'assets/images/payment.png',
-                                            width: 70,
-                                            height: 50,
-                                          ), // รูปภาพของปุ่ม
-                                          const Text(
-                                            'ใบเสร็จ',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ), // ข้อความบนปุ่ม
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 10,
-                                  bottom: 10,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                          const Color.fromARGB(
-                                              96, 219, 217, 200),
-                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                18.0), // กำหนดรัศมีของขอบปุ่ม
-                                            side: const BorderSide(
-                                              color: Colors.white, width: 4,
-                                              // กำหนดสีขอบของปุ่ม
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
-                                      },
-                                      child: Column(
-                                        children: <Widget>[
-                                          Image.asset(
-                                            'assets/images/seller.png',
-                                            width: 50,
-                                            height: 50,
-                                          ), // รูปภาพของปุ่ม
-                                          const Text(
-                                            'เลือกซื้อสินค้า',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ), // ข้อความบนปุ่ม
-                                        ],
-                                      ),
-                                    ),
-                                    TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                          const Color.fromARGB(
-                                              96, 219, 217, 200),
-                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                18.0), // กำหนดรัศมีของขอบปุ่ม
-                                            side: const BorderSide(
-                                              color: Colors.white, width: 4,
-                                              // กำหนดสีขอบของปุ่ม
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        // โค้ดที่ต้องการให้ทำงานเมื่อปุ่มถูกกด
-                                      },
-                                      child: Column(
-                                        children: <Widget>[
-                                          Image.asset(
-                                            'assets/images/car-dealer.png',
-                                            width: 50,
-                                            height: 50,
-                                          ), // รูปภาพของปุ่ม
-                                          const Text(
-                                            'รถที่สนใจ',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ), // ข้อความบนปุ่ม
-                                        ],
-                                      ),
-                                    ),
-                                    TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                          const Color.fromARGB(
-                                              96, 219, 217, 200),
-                                        ), // สีพื้นหลังของปุ่มเมื่อปุ่มอยู่ในสถานะปกติ
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                18.0), // กำหนดรัศมีของขอบปุ่ม
-                                            side: const BorderSide(
-                                              color: Colors.white, width: 4,
-                                              // กำหนดสีขอบของปุ่ม
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const LoginApp(),
-                                          ),
-                                        );
-                                        _logout();
-                                      },
-                                      child: Column(
-                                        children: <Widget>[
-                                          Image.asset(
-                                            'assets/images/exit.png',
-                                            width: 50,
-                                            height: 50,
-                                          ), // รูปภาพของปุ่ม
-                                          const Text(
-                                            'ออกจากระบบ',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ), // ข้อความบนปุ่ม
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Image.asset(
-                                  "assets/images/car-insurance.png",
-                                  width: 100,
-                                  height: 70,
-                                ),
-                              ],
-                            ),
-                            const Column(
-                              children: [
-                                Text(
-                                  "ไมล์เดิม 100%",
-                                  style: TextStyle(
-                                    fontFamily: 'CustomFont',
-                                    fontSize: 20,
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                TextButton(
-                                    onPressed: () {},
-                                    child: Image.asset(
-                                      "assets/images/accept.png",
-                                      width: 20,
-                                      height: 20,
-                                    ))
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20, right: 20, top: 20, bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Image.asset(
-                                  "assets/images/car.png",
-                                  width: 100,
-                                  height: 70,
-                                ),
-                              ],
-                            ),
-                            const Column(
-                              children: [
-                                Text(
-                                  "รถคุณภาพดี",
-                                  style: TextStyle(
-                                    fontFamily: 'CustomFont',
-                                    fontSize: 20,
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                TextButton(
-                                    onPressed: () {},
-                                    child: Image.asset(
-                                      "assets/images/accept.png",
-                                      width: 20,
-                                      height: 20,
-                                    ))
-                              ],
-                            )
-                          ],
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [],
                         ),
                       ),
                       SizedBox(
-                        height: 100,
+                        height: 200,
                       )
                     ],
                   ),

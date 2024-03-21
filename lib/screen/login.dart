@@ -42,7 +42,7 @@ class _LoginAppState extends State<LoginApp> {
   Future<void> Signin() async {
     if (name.text != "" || password.text != "") {
       try {
-        String uri = "http://10.0.2.2/ko/login.php";
+        String uri = "https://doocar.000webhostapp.com/login.php";
         var res = await http.post(
           Uri.parse(uri),
           body: {
@@ -181,9 +181,6 @@ class _LoginAppState extends State<LoginApp> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const SizedBox(
-                      height: 80,
-                    ),
                     Image.asset(
                       'assets/images/3.png',
                       width: 300,
@@ -196,118 +193,127 @@ class _LoginAppState extends State<LoginApp> {
                           TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    SizedBox(
-                      width: 350,
-                      child: TextFormField(
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18),
-                              borderSide: BorderSide.none),
-                          fillColor: const Color.fromARGB(255, 218, 199, 221)
-                              .withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.person),
-                          labelText: 'Name',
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'กรุณาป้อนชื่อบัญชี';
-                          }
-                          return null;
-                        },
-                        controller: name,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 350,
-                      child: TextFormField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18),
-                              borderSide: BorderSide.none),
-                          fillColor: const Color.fromARGB(255, 218, 199, 221)
-                              .withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.password),
-                          labelText: 'Password',
-                        ),
-                        validator: (val) {
-                          if (val == null) {
-                            return 'Empty';
-                          }
-                          return null;
-                        },
-                        controller: password,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 350,
-                      height: 60,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 218, 199, 221),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15))),
-                        onPressed: () {
-                          // printSession();
-                          Signin();
-                        },
-                        child: const Text(
-                          'Login',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            textStyle: const TextStyle(fontSize: 15),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Navigatorbar(),
-                              ),
-                            );
-                          },
-                          child: const Text("กลับไปหน้าหลัก"),
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            textStyle: const TextStyle(fontSize: 15),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpScreen(),
-                              ),
-                            );
-                          },
-                          child: const Text("สมัครบัญชี"),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
+                    Container(
+                      width: 300,
                       height: 300,
-                    )
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            width: 350,
+                            child: TextFormField(
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide.none),
+                                fillColor:
+                                    const Color.fromARGB(255, 218, 199, 221)
+                                        .withOpacity(0.1),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.person),
+                                labelText: 'Name',
+                              ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'กรุณาป้อนชื่อบัญชี';
+                                }
+                                return null;
+                              },
+                              controller: name,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            width: 350,
+                            child: TextFormField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide.none),
+                                fillColor:
+                                    const Color.fromARGB(255, 218, 199, 221)
+                                        .withOpacity(0.1),
+                                filled: true,
+                                prefixIcon: const Icon(Icons.password),
+                                labelText: 'Password',
+                              ),
+                              validator: (val) {
+                                if (val == null) {
+                                  return 'Empty';
+                                }
+                                return null;
+                              },
+                              controller: password,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            width: 350,
+                            height: 60,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 218, 199, 221),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15))),
+                              onPressed: () {
+                                // printSession();
+                                Signin();
+                              },
+                              child: const Text(
+                                'Login',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  textStyle: const TextStyle(fontSize: 15),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Navigatorbar(),
+                                    ),
+                                  );
+                                },
+                                child: const Text("กลับไปหน้าหลัก"),
+                              ),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  textStyle: const TextStyle(fontSize: 15),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SignUpScreen(),
+                                    ),
+                                  );
+                                },
+                                child: const Text("สมัครบัญชี"),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ],
