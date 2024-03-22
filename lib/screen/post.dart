@@ -70,6 +70,12 @@ class _PostuiState extends State<Postui> {
 
       if ($res["status"] == "success") {
         print("กุเพิ่มละ");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Navigatorbar(),
+          ),
+        );
       } else if ($res["status"] == "error") {
         print("some issue");
       }
@@ -128,12 +134,6 @@ class _PostuiState extends State<Postui> {
                               TextButton(
                                 onPressed: () {
                                   getImage();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const NavBar(),
-                                    ),
-                                  );
                                 },
                                 child: const Column(
                                   children: [
