@@ -21,7 +21,7 @@ class _LoginAppState extends State<LoginApp> {
   @override
   final formKey = GlobalKey<FormState>();
   late SharedPreferences _prefs;
-  late SharedPreferences prefs;
+
   bool _isLoggedIn = false;
   TextEditingController name = TextEditingController();
   TextEditingController password = TextEditingController();
