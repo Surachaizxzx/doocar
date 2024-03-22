@@ -23,7 +23,6 @@ class _PostuiState extends State<Postui> {
   TextEditingController carinfomation = TextEditingController();
   TextEditingController carprice = TextEditingController();
   TextEditingController user_id = TextEditingController();
-  late SharedPreferences _prefs;
   File? _selectedIamge;
   String? imagename;
   String? imagedata;
@@ -38,6 +37,20 @@ class _PostuiState extends State<Postui> {
       print(imagename);
       print(imagedata);
     });
+  }
+
+  Future<void> deleteImage() async {
+    if (_selectedIamge != null) {
+      await _selectedIamge!.delete(); // ลบรูปภาพจากระบบไฟล์
+      setState(() {
+        _selectedIamge = null; // เคลียร์ค่า _selectedIamge
+        imagename = ''; // เคลียร์ค่า imagename
+        imagedata = ''; // เคลียร์ค่า imagedata
+      });
+      print('Image deleted successfully');
+    } else {
+      print('No image selected to delete');
+    }
   }
 
   Future<String?> getSession() async {
@@ -70,6 +83,12 @@ class _PostuiState extends State<Postui> {
 
       if ($res["status"] == "success") {
         print("กุเพิ่มละ");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Navigatorbar(),
+          ),
+        );
       } else if ($res["status"] == "error") {
         print("some issue");
       }
@@ -128,12 +147,6 @@ class _PostuiState extends State<Postui> {
                               TextButton(
                                 onPressed: () {
                                   getImage();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const NavBar(),
-                                    ),
-                                  );
                                 },
                                 child: const Column(
                                   children: [
@@ -252,7 +265,9 @@ class _PostuiState extends State<Postui> {
                       textStyle:
                           const TextStyle(fontSize: 16), // สไตล์ข้อความบนปุ่ม
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      deleteImage();
+                    },
                     child: const Text("ลบรูปภาพ"),
                   ),
                   TextButton(
