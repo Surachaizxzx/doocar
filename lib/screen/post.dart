@@ -128,8 +128,11 @@ class _PostuiState extends State<Postui> {
                               TextButton(
                                 onPressed: () {
                                   getImage();
-                                  MaterialPageRoute(
-                                    builder: (context) => const NavBar(),
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const NavBar(),
+                                    ),
                                   );
                                 },
                                 child: const Column(
