@@ -13,6 +13,7 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Doocar',
       debugShowCheckedModeBanner: false,
       themeAnimationCurve: Curves.bounceIn,
       theme: ThemeData.light(),

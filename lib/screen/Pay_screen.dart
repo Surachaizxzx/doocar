@@ -58,147 +58,152 @@ class _MultiInputFormState extends State<MultiInputForm> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 200),
-              TextFormField(
-                controller: _controller1,
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                ],
-                decoration: const InputDecoration(
-                  labelText: 'ราคารถ',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        20,
-                      ),
-                    ),
-                  ),
-                  fillColor: Colors.white,
-                  filled: true,
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                controller: _controller2,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
-                ],
-                decoration: const InputDecoration(
-                  labelText: 'ดอกเบี้ย',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        20,
-                      ),
-                    ),
-                  ),
-                  fillColor: Colors.white,
-                  filled: true,
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                controller: _controller3,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
-                ],
-                decoration: const InputDecoration(
-                  labelText: 'เงินดาวน์',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        20,
-                      ),
-                    ),
-                  ),
-                  fillColor: Colors.white,
-                  filled: true,
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                controller: _controller4,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
-                ],
-                decoration: const InputDecoration(
-                  labelText: 'ปี',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        20,
-                      ),
-                    ),
-                  ),
-                  fillColor: Colors.white,
-                  filled: true,
-                ),
-              ),
-              const SizedBox(height: 25),
-              ElevatedButton(
-                onPressed: () {
-                  double price = double.tryParse(_controller1.text) ?? 0;
-                  double price2 = double.tryParse(_controller2.text) ?? 0;
-                  double price3 = double.tryParse(_controller3.text) ?? 0;
-                  double price4 = double.tryParse(_controller4.text) ?? 0;
-
-                  double calculatedResult = price - ((price * price3) / 100);
-                  double calculatedResult2 = (calculatedResult * price2) / 100;
-                  double calculatedResult3 = calculatedResult2 * price4;
-                  double calculatedResult4 =
-                      calculatedResult3 + calculatedResult;
-                  double calculatedResult5 = calculatedResult4 / (price4 * 12);
-
-                  // แสดงผลลัพธ์เป็น Alert Dialog
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text('ผลลัพธ์'),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('เงินดาวน์: $calculatedResult บาท'),
-                            Text(
-                                'เงินดอกเบี้ย: $calculatedResult2 บาท/ต่อปี 1'),
-                            Text(
-                                'ราคาดอกเบี้ยต่อปี: $calculatedResult3 บาท/$price4 ปี'),
-                            Text('ยอดที่ต้องจ่ายจริง: $calculatedResult4 บาท'),
-                            Text(
-                                'ยอดที่ต้องจ่ายจริง: $calculatedResult5 บาท/เดือน'),
-                          ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 200),
+                TextFormField(
+                  controller: _controller1,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  ],
+                  decoration: const InputDecoration(
+                    labelText: 'ราคารถ',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          20,
                         ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('ปิด'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 0, 0, 0),
-                ),
-                child: const Text(
-                  'คำนวณ',
-                  style: TextStyle(
-                    color: Colors.white,
+                      ),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
                   ),
                 ),
-              ),
-              const SizedBox(height: 50),
-            ],
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _controller2,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+                  ],
+                  decoration: const InputDecoration(
+                    labelText: 'ดอกเบี้ย',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          20,
+                        ),
+                      ),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _controller3,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+                  ],
+                  decoration: const InputDecoration(
+                    labelText: 'เงินดาวน์',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          20,
+                        ),
+                      ),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _controller4,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+                  ],
+                  decoration: const InputDecoration(
+                    labelText: 'ปี',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          20,
+                        ),
+                      ),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                ),
+                const SizedBox(height: 25),
+                ElevatedButton(
+                  onPressed: () {
+                    double price = double.tryParse(_controller1.text) ?? 0;
+                    double price2 = double.tryParse(_controller2.text) ?? 0;
+                    double price3 = double.tryParse(_controller3.text) ?? 0;
+                    double price4 = double.tryParse(_controller4.text) ?? 0;
+
+                    double calculatedResult = price - ((price * price3) / 100);
+                    double calculatedResult2 =
+                        (calculatedResult * price2) / 100;
+                    double calculatedResult3 = calculatedResult2 * price4;
+                    double calculatedResult4 =
+                        calculatedResult3 + calculatedResult;
+                    double calculatedResult5 =
+                        calculatedResult4 / (price4 * 12);
+
+                    // แสดงผลลัพธ์เป็น Alert Dialog
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('ผลลัพธ์'),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('เงินดาวน์: $calculatedResult บาท'),
+                              Text(
+                                  'เงินดอกเบี้ย: $calculatedResult2 บาท/ต่อปี 1'),
+                              Text(
+                                  'ราคาดอกเบี้ยต่อปี: $calculatedResult3 บาท/$price4 ปี'),
+                              Text(
+                                  'ยอดที่ต้องจ่ายจริง: $calculatedResult4 บาท'),
+                              Text(
+                                  'ยอดที่ต้องจ่ายจริง: $calculatedResult5 บาท/เดือน'),
+                            ],
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('ปิด'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                  child: const Text(
+                    'คำนวณ',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 50),
+              ],
+            ),
           ),
         ),
       ),

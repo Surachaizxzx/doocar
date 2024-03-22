@@ -1,5 +1,6 @@
 import 'package:doocar/Login_logout.dart';
 import 'package:doocar/screen/editinfo.dart';
+import 'package:doocar/screen/post.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -38,9 +39,15 @@ class _NavBarState extends State<NavBar> {
     // ตั้งค่า isLoggedIn เป็น false และบันทึกลง SharedPreferences
     await prefs.setBool('isLoggedIn', false);
     removeSession();
+    removeid();
     setState(() {
       _isLoggedIn = false;
     });
+  }
+
+  void saveID(String ID) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('ID', ID);
   }
 
   void removeSession() async {
@@ -57,6 +64,22 @@ class _NavBarState extends State<NavBar> {
   void printSession() async {
     String? session = await getSession();
     print(session);
+  }
+
+  Future<String> getid() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs
+        .getString('ID')!; // ใช้ ! เพื่อรับประกันว่าค่า session ไม่เป็น null
+  }
+
+  void printid() async {
+    String? id = await getid();
+    print(id);
+  }
+
+  void removeid() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('ID');
   }
 
   late Future<List<User>> _usersFuture;
@@ -265,21 +288,382 @@ class _NavBarState extends State<NavBar> {
                         ],
                       ),
                       Divider(
-                        color: Colors.black, // Specify the color of the line
+                        color: const Color.fromARGB(255, 255, 255,
+                            255), // Specify the color of the line
                         thickness: 2, // Specify the thickness of the line
                         indent: 20, // Specify the starting padding of the line
                         endIndent: 20, // Specify the ending padding of the line
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                          left: 20,
-                          top: 3,
-                          right: 20,
+                          left: 10,
+                          top: 40,
+                          right: 10,
                           bottom: 20,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [],
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                width: 2,
+                                style: BorderStyle.solid,
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                              )),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal:
+                                                20), // กำหนดระยะห่างของขอบปุ่ม
+                                      ),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              15.0), // กำหนดรูปร่างของปุ่ม
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/user.png",
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                        Text("เเก้ไขโปรไฟล์"),
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal:
+                                                20), // กำหนดระยะห่างของขอบปุ่ม
+                                      ),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              15.0), // กำหนดรูปร่างของปุ่ม
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/resume.png",
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                        Text("เเก้ไขข้อมูล"),
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal:
+                                                20), // กำหนดระยะห่างของขอบปุ่ม
+                                      ),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              15.0), // กำหนดรูปร่างของปุ่ม
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/payment.png",
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                        Text("ใบเสร็จ"),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal:
+                                                20), // กำหนดระยะห่างของขอบปุ่ม
+                                      ),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              15.0), // กำหนดรูปร่างของปุ่ม
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Postui(),
+                                        ),
+                                      );
+                                      saveID(user.id);
+                                      printid();
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/post.png",
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                        Text("โพสขายสินค้า"),
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal:
+                                                20), // กำหนดระยะห่างของขอบปุ่ม
+                                      ),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              15.0), // กำหนดรูปร่างของปุ่ม
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/shopping-cart.png",
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                        Text("สินค้าของฉัน"),
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal:
+                                                20), // กำหนดระยะห่างของขอบปุ่ม
+                                      ),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              15.0), // กำหนดรูปร่างของปุ่ม
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/shop.png",
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                        Text("ร้านสินค้า"),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal:
+                                                20), // กำหนดระยะห่างของขอบปุ่ม
+                                      ),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              15.0), // กำหนดรูปร่างของปุ่ม
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/seller.png",
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                        Text("เลือกซื้อสินค้า"),
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal:
+                                                25), // กำหนดระยะห่างของขอบปุ่ม
+                                      ),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              15.0), // กำหนดรูปร่างของปุ่ม
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/car-dealer.png",
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                        Text("รถที่สนใจ"),
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                        EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal:
+                                                10), // กำหนดระยะห่างของขอบปุ่ม
+                                      ),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              15.0), // กำหนดรูปร่างของปุ่ม
+                                        ),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LoginApp(),
+                                        ),
+                                      );
+                                      _logout();
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/exit.png",
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                        Text("ออกจากระบบ"),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
