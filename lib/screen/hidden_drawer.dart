@@ -1,6 +1,7 @@
 import 'package:doocar/Login_logout.dart';
 import 'package:doocar/screen/editinfo.dart';
 import 'package:doocar/screen/post.dart';
+import 'package:doocar/screen/settingprofile.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -338,7 +339,15 @@ class _NavBarState extends State<NavBar> {
                                         ),
                                       ),
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SettingProfile(),
+                                        ),
+                                      );
+                                    },
                                     child: Column(
                                       children: [
                                         Image.asset(
