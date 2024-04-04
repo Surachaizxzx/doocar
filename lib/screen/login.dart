@@ -30,6 +30,11 @@ class _LoginAppState extends State<LoginApp> {
     return prefs.getString('session');
   }
 
+  void saveID(String ID) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('ID', ID);
+  }
+
   void printSession() async {
     String? session = await getSession();
     if (session != null) {

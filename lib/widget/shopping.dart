@@ -21,20 +21,33 @@ class ShoppingListviewWidget extends StatefulWidget {
 class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
     with TickerProviderStateMixin {
   List recorde = [];
+  String id = '';
   String name = '';
   @override
   void initState() {
     imageformdb();
+    _fetchId();
     _fetchName();
     super.initState();
   }
 
   Future<void> _fetchName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? storedName = prefs.getString('session');
+    String? storedname = prefs.getString('session')!;
     setState(() {
-      name = storedName ??
-          ''; // Assign the value obtained from SharedPreferences to 'name'
+      name = storedname!;
+      print(name);
+      ''; // Assign the value obtained from SharedPreferences to 'name'
+    }); // ใช้ ! เพื่อรับประกันว่าค่า session ไม่เป็น null
+  }
+
+  Future<void> _fetchId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? storedid = prefs.getString('ID');
+    setState(() {
+      id = storedid!;
+      print(id);
+      ''; // Assign the value obtained from SharedPreferences to 'name'
     });
   }
 
@@ -67,14 +80,22 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
   Widget _buildGridView() {
     // สร้าง GridView
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         const BannerWidget(),
         Expanded(
           child: GridView.builder(
             itemCount: recorde.length, // จำนวนรายการทั้งหมด
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1),
+              crossAxisCount: 1,
+              crossAxisSpacing: 10, // ระยะห่างในแนวนอนระหว่างรูปภาพ
+              mainAxisSpacing: 10,
+            ),
             itemBuilder: (BuildContext context, int index) {
+              bool isCurrentUser = (id == recorde[index]["user_id"]);
+              // print(name);
+              // print(recorde[index]["user_id"]);
+
               // สร้าง Widget สำหรับแต่ละเซลล์ใน GridView
               return Padding(
                 padding: const EdgeInsets.only(
@@ -109,7 +130,6 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                       children: [
                         Text(
                           "โพสโดย " +
-                              name +
                               "\t\tรหัสผู้ใช้\t\t" +
                               recorde[index]["user_id"],
                           style: TextStyle(
@@ -117,6 +137,17 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        if (isCurrentUser)
+                          IconButton(
+                            icon: Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                            onPressed: () {
+                              // Handle delete action
+                              // Call method to delete post
+                            },
+                          ),
                       ],
                     ),
                     Row(
@@ -147,12 +178,13 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                width: 270, // Adjust the width as needed
+                                width: 270,
+                                // Adjust the width as needed
                                 child: Text(
                                   "คำอธิบาย\t\t" +
                                       recorde[index]["information"],
                                   overflow: TextOverflow.clip,
-                                  maxLines: null, // Limit the number of lines
+                                  maxLines: 4, // Limit the number of lines
                                 ),
                               ),
                             ],
