@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'banner_widget.dart';
-
 export 'package:doocar/widget/shopping.dart';
 
 class ShoppingListviewWidget extends StatefulWidget {
@@ -63,6 +61,19 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
     }
   }
 
+  Future<void> shopping() async {
+    try {
+      String uri = "https://doocar.000webhostapp.com/post.php";
+
+      var res = await http.post(
+        Uri.parse(uri),
+        body: {},
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -82,7 +93,10 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const BannerWidget(),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: const BannerWidget(),
+        ),
         Expanded(
           child: GridView.builder(
             itemCount: recorde.length, // จำนวนรายการทั้งหมด
@@ -127,6 +141,7 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                       height: 5,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "โพสโดย " +
@@ -148,6 +163,15 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                               // Call method to delete post
                             },
                           ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.shopping_bag,
+                            color: Color.fromARGB(255, 54, 244, 70),
+                          ),
+                          onPressed: () {
+                            shopping();
+                          },
+                        ),
                       ],
                     ),
                     Row(

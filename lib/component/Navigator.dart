@@ -30,7 +30,6 @@ class _NavigatorbarState extends State<Navigatorbar> {
           controller: _pageControlller,
           children: const <Widget>[
             Homescreen(),
-            BuyMycar(),
             Pay_in_installments(),
             NavBar(),
           ],
@@ -47,11 +46,6 @@ class _NavigatorbarState extends State<Navigatorbar> {
           items: const [
             RollingBottomBarItem(FontAwesomeIcons.bagShopping,
                 label: 'หน้าเเรก', activeColor: Colors.redAccent),
-            RollingBottomBarItem(
-              Icons.shopping_basket_outlined,
-              label: 'บุ๊คมาร์ค',
-              activeColor: Colors.blueAccent,
-            ),
             RollingBottomBarItem(Icons.attach_money,
                 label: 'ค่างวด', activeColor: Colors.green),
             RollingBottomBarItem(Icons.keyboard_control_sharp,

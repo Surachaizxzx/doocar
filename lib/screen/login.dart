@@ -59,6 +59,8 @@ class _LoginAppState extends State<LoginApp> {
 
         if ($response["status"] == "success") {
           saveLoginStatus();
+          callsaveid($response["id"]);
+          saveSession($response["name"]);
           _showMyDialoglogin("เข้าสู่ระบบสำเร็จ");
         } else if ($response["status"] == "error") {
           print("some issue");
@@ -87,6 +89,11 @@ class _LoginAppState extends State<LoginApp> {
     setState(() {
       _isLoggedIn = isLoggedIn;
     });
+  }
+
+  void callsaveid(String session) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('ID', session);
   }
 
   void saveSession(String session) async {
@@ -147,7 +154,6 @@ class _LoginAppState extends State<LoginApp> {
               ),
               TextButton(
                 onPressed: () {
-                  saveSession(name.text);
                   printSession();
                   Navigator.push(
                     context,
