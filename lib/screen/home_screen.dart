@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:doocar/widget/shopping.dart' show ShoppingListviewWidget;
 
-
 import 'hidden_drawer.dart';
 
 class Homescreen extends StatelessWidget {
@@ -18,7 +17,6 @@ class Homescreen extends StatelessWidget {
         leadingWidth: 100,
         centerTitle: true,
         title: const Text('ร้านค้า'),
-       
         actions: <Widget>[
           IconButton(
             onPressed: () {},
@@ -33,10 +31,12 @@ class Homescreen extends StatelessWidget {
               Icons.shopping_cart,
               color: Colors.black,
             ),
-          )
+          ),
+          SizedBox(
+            height: 3,
+          ),
         ],
       ),
-      
       body: ShoppingListviewWidget(),
     );
   }
