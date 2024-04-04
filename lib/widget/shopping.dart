@@ -120,7 +120,7 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "รถรุ่น\t\t" + recorde[index]["name"],
@@ -144,7 +144,7 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                         SizedBox(
                           width: 290,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
                                 width: 270, // Adjust the width as needed

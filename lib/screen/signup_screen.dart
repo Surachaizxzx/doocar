@@ -172,7 +172,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               autovalidateMode: AutovalidateMode.onUserInteraction,
               key: _formKey,
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.only(
+                  left: 30,
+                  right: 30,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
