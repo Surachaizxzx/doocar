@@ -5,6 +5,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'banner_widget.dart';
 
@@ -20,11 +21,21 @@ class ShoppingListviewWidget extends StatefulWidget {
 class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
     with TickerProviderStateMixin {
   List recorde = [];
-
+  String name = '';
   @override
   void initState() {
     imageformdb();
+    _fetchName();
     super.initState();
+  }
+
+  Future<void> _fetchName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? storedName = prefs.getString('session');
+    setState(() {
+      name = storedName ??
+          ''; // Assign the value obtained from SharedPreferences to 'name'
+    });
   }
 
   Future<void> imageformdb() async {
@@ -57,10 +68,7 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
     // สร้าง GridView
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: const BannerWidget(),
-        ),
+        const BannerWidget(),
         Expanded(
           child: GridView.builder(
             itemCount: recorde.length, // จำนวนรายการทั้งหมด
@@ -98,6 +106,20 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                       height: 5,
                     ),
                     Row(
+                      children: [
+                        Text(
+                          "โพสโดย " +
+                              name +
+                              "\t\tรหัสผู้ใช้\t\t" +
+                              recorde[index]["user_id"],
+                          style: TextStyle(
+                            color: Colors.amber,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
@@ -124,11 +146,14 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(
-                                "คำอธิบาย\t\t" + recorde[index]["information"],
-                                overflow: TextOverflow.visible,
-                                maxLines: null,
-                                textAlign: TextAlign.center,
+                              Container(
+                                width: 270, // Adjust the width as needed
+                                child: Text(
+                                  "คำอธิบาย\t\t" +
+                                      recorde[index]["information"],
+                                  overflow: TextOverflow.clip,
+                                  maxLines: null, // Limit the number of lines
+                                ),
                               ),
                             ],
                           ),
