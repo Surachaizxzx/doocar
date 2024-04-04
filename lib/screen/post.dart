@@ -71,12 +71,12 @@ class _PostuiState extends State<Postui> {
       var res = await http.post(
         Uri.parse(uri),
         body: {
-          "carname": carname.text,
-          "carinfomation": carinfomation.text,
-          "carprice": carprice.text,
-          "uid": userId,
-          "image": imagedata,
-          "imagename": imagename,
+          "carname": carname.text, //caption
+          "carinfomation": carinfomation.text, //caption
+          "carprice": carprice.text, //caption
+          "uid": userId, //caption
+          "data": imagedata,
+          "name": imagename,
         },
       );
       var $res = jsonDecode(res.body);

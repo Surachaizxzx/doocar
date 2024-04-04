@@ -1,4 +1,3 @@
-import 'package:doocar/screen/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
@@ -6,7 +5,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:doocar/widget/banner_widget.dart';
+
 export 'package:doocar/widget/shopping.dart';
 
 class ShoppingListviewWidget extends StatefulWidget {
@@ -19,24 +18,11 @@ class ShoppingListviewWidget extends StatefulWidget {
 class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
     with TickerProviderStateMixin {
   List recorde = [];
-  late ShoppingListviewModel _model;
-
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     imageformdb();
     super.initState();
-
-    _model = createModel(context, () => ShoppingListviewModel());
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
-
-    _model.tabBarController = TabController(
-      vsync: this,
-      length: 3,
-      initialIndex: 0,
-    )..addListener(() => setState(() {}));
   }
 
   Future<void> imageformdb() async {
@@ -53,129 +39,54 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
 
   @override
   void dispose() {
-    _model.dispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: SingleChildScrollView(
-        child: Scaffold(
-          key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          body: SafeArea(
-            top: true,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: [
-                        const BoxShadow(
-                          blurRadius: 3,
-                          color: Color(0x33000000),
-                          offset: Offset(0, 1),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(40),
-                      border: Border.all(
-                        color: FlutterFlowTheme.of(context).alternate,
-                      ),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16, 0, 12, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Icon(
-                            Icons.search_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24,
-                          ),
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).alternate,
-                            borderRadius: 20,
-                            borderWidth: 1,
-                            buttonSize: 40,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            icon: Icon(
-                              Icons.tune_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: BannerWidget(),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(),
-                  child: Column(
-                    children: [
-                      GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, // ปรับจำนวนคอลัมน์ตามที่ต้องการ
-                          mainAxisSpacing: 8, // เพิ่มระยะห่างระหว่างแถว
-                          crossAxisSpacing: 8, // เพิ่มระยะห่างระหว่างคอลัมน์
-                          childAspectRatio: 1, // สัดส่วนของความสูงต่อความกว้าง
-                        ),
-                        itemCount: recorde.length,
-                        itemBuilder: (BuildContext context, index) {
-                          return Card(
-                            margin: EdgeInsets.all(8),
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    // ตั้งค่าขนาดความสูงของภาพเพื่อให้รูปภาพทั้งหมดอยู่ในขนาดเดียวกัน
-                                    height: 40,
-                                    width: 40,
-                                    child: Image.network(
-                                      "https://doocar.000webhostapp.com/viewimage.php" +
-                                          recorde[index]["image"],
-                                      fit: BoxFit
-                                          .cover, // ปรับขนาดภาพให้พอดีกับพื้นที่ที่กำหนด
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('My GridView Example'),
       ),
+      body: _buildGridView(), // เรียกใช้เมธอดสร้าง GridView
+    );
+  }
+
+  Widget _buildGridView() {
+    // สร้าง GridView
+    return GridView.builder(
+      itemCount: recorde.length, // จำนวนรายการทั้งหมด
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 1, // จำนวนคอลัมน์ใน GridView
+      ),
+      itemBuilder: (BuildContext context, int index) {
+        // สร้าง Widget สำหรับแต่ละเซลล์ใน GridView
+        return Card(
+          margin: EdgeInsets.all(8),
+          child: Column(
+            children: [
+              Container(
+                width: 400,
+                height: 400,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      "https://doocar.000webhostapp.com/" +
+                          recorde[index]["image"],
+                    ),
+                  ),
+                ),
+                child: Text(
+                  recorde[index]["information"],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
