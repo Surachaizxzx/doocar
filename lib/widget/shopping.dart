@@ -63,27 +63,23 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
         // สร้าง Widget สำหรับแต่ละเซลล์ใน GridView
         return Card(
           margin: EdgeInsets.all(8),
-          child: Column(
-            children: [
-              Container(
-                width: 400,
-                height: 400,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      "https://doocar.000webhostapp.com/" +
-                          recorde[index]["image"],
-                    ),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: 10,
+              bottom: 10,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    "https://doocar.000webhostapp.com/" +
+                        recorde[index]["image"],
                   ),
-                ),
-                child: Text(
-                  recorde[index]["information"],
+                  fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-            ],
+              child: Text(recorde[index]["information"]),
+            ),
           ),
         );
       },
