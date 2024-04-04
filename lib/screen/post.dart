@@ -24,6 +24,7 @@ class _PostuiState extends State<Postui> {
   TextEditingController carprice = TextEditingController();
   TextEditingController user_id = TextEditingController();
   File? _selectedIamge;
+  final _formKey = GlobalKey<FormState>();
   String? imagename;
   String? imagedata;
   ImagePicker imagePicker = new ImagePicker();
@@ -37,6 +38,60 @@ class _PostuiState extends State<Postui> {
       print(imagename);
       print(imagedata);
     });
+  }
+
+  void _showMyDialog(String txtMsg) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Expanded(
+          child: AlertDialog(
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            title: const Text(
+              'กรุณาตรวจสอบอีกครั้ง',
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'CustomFont',
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 2, 2, 2),
+              ),
+            ),
+            content: Text(
+              txtMsg,
+              style: const TextStyle(
+                color: Colors.black,
+                fontFamily: 'CustomFont',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate() && _selectedIamge != null) {
+      setState(() {
+        uploadimage();
+      });
+      // ดำเนินการเมื่อข้อมูลถูกต้อง
+    } else {
+      _showMyDialog("โพสไม่สำเร็จ");
+    }
   }
 
   Future<void> deleteImage() async {
@@ -171,10 +226,11 @@ class _PostuiState extends State<Postui> {
               Container(
                 margin: const EdgeInsets.all(10),
                 child: Form(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  key: _formKey,
                   child: Column(
                     children: [
                       TextFormField(
-                        controller: carname,
                         obscureText: false,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -189,11 +245,12 @@ class _PostuiState extends State<Postui> {
                           ),
                         ),
                         validator: (val) {
-                          if (val == null) {
-                            return 'Empty';
+                          if (val!.isEmpty) {
+                            return 'กรุณากรอกชื่อสินค้า';
                           }
                           return null;
                         },
+                        controller: carname,
                       ),
                       const SizedBox(
                         height: 10,
@@ -214,8 +271,8 @@ class _PostuiState extends State<Postui> {
                           ),
                         ),
                         validator: (val) {
-                          if (val == null) {
-                            return 'Empty';
+                          if (val!.isEmpty) {
+                            return 'กรุณากรอกราคา';
                           }
                           return null;
                         },
@@ -239,8 +296,8 @@ class _PostuiState extends State<Postui> {
                           ),
                         ),
                         validator: (val) {
-                          if (val == null) {
-                            return 'Empty';
+                          if (val!.isEmpty) {
+                            return 'กรุณาใส่คำอธิบาย';
                           }
                           return null;
                         },
@@ -284,9 +341,7 @@ class _PostuiState extends State<Postui> {
                           const TextStyle(fontSize: 16), // สไตล์ข้อความบนปุ่ม
                     ),
                     onPressed: () {
-                      setState(() {
-                        uploadimage();
-                      });
+                      _submitForm();
                     },
                     child: const Text("โพส"),
                   ),
