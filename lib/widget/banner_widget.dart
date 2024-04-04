@@ -12,10 +12,10 @@ class _BannerWidgetState extends State<BannerWidget> {
   int showedIndex = 0;
 
   final banners = [
-    "assets/images/car1.png",
-    "assets/images/car2.png",
-    "assets/images/car3.png",
-    'assets/images/car4.png',
+    "assets/images/BANNER-dunlop.jpg",
+    "assets/images/BANNER-mi.jpg",
+    "assets/images/BANNER-TOYO.jpg",
+    'assets/images/service.png',
   ];
 
   @override
@@ -23,10 +23,10 @@ class _BannerWidgetState extends State<BannerWidget> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color.fromARGB(255, 0, 0, 0), 
-          width: 5, 
+          color: Color.fromARGB(255, 0, 0, 0),
+          width: 5,
         ),
-        borderRadius: BorderRadius.circular(10), 
+        borderRadius: BorderRadius.circular(10),
       ),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
