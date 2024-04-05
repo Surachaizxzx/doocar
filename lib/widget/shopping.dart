@@ -211,7 +211,7 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                                   "คำอธิบาย\t\t" +
                                       recorde[index]["information"],
                                   overflow: TextOverflow.clip,
-                                  maxLines: 4, // Limit the number of lines
+                                  maxLines: null, // Limit the number of lines
                                 ),
                               ),
                             ],
