@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -100,8 +101,8 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
             itemCount: recorde.length, // จำนวนรายการทั้งหมด
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 1,
-              crossAxisSpacing: 10, // ระยะห่างในแนวนอนระหว่างรูปภาพ
-              mainAxisSpacing: 10,
+              crossAxisSpacing: 60, // ระยะห่างในแนวนอนระหว่างรูปภาพ
+              mainAxisSpacing: 20,
             ),
             itemBuilder: (BuildContext context, int index) {
               bool isCurrentUser = (id == recorde[index]["user_id"]);
@@ -184,40 +185,47 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                           "รถรุ่น\t\t" + recorde[index]["name"],
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                         Text(
                           recorde[index]["price"] + "\tบาท",
                           style: const TextStyle(
                             fontWeight: FontWeight.normal,
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 290,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 270,
-                                // Adjust the width as needed
-                                child: Text(
-                                  "คำอธิบาย\t\t" +
-                                      recorde[index]["information"],
-                                  overflow: TextOverflow.clip,
-                                  maxLines: null, // Limit the number of lines
+                    SizedBox(
+                      height: 30,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 290,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 270,
+                                  // Adjust the width as needed
+                                  child: Text(
+                                    "คำอธิบาย\t\t" +
+                                        recorde[index]["information"],
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 10,
+                                    ),
+                                    overflow: TextOverflow.clip,
+                                    maxLines: 8, // Limit the number of lines
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
