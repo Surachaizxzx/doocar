@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
-
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../screen/bill.dart';
 import 'banner_widget.dart';
 export 'package:doocar/widget/shopping.dart';
 
@@ -169,7 +167,12 @@ class ShoppingListviewWidgetState extends State<ShoppingListviewWidget>
                             color: Color.fromARGB(255, 54, 244, 70),
                           ),
                           onPressed: () {
-                            shopping();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyHomePage(),
+                              ),
+                            );
                           },
                         ),
                       ],

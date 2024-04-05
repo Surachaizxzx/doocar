@@ -1,8 +1,8 @@
 import 'package:doocar/screen/hidden_drawer.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import '../component/Navigator.dart';
 
 class SettingProfile extends StatefulWidget {
   const SettingProfile({super.key});
@@ -13,10 +13,73 @@ class SettingProfile extends StatefulWidget {
 
 class _Settings2EditProfileWidgetState extends State<SettingProfile> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
+  final formKey = GlobalKey<FormState>();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController Phone = TextEditingController();
+  var recorde = [];
   @override
   void initState() {
     super.initState();
+  }
+
+  Future<void> edit() async {
+    try {
+      String uri = "https://doocar.000webhostapp.com/edit.php";
+      var res = await http.post(
+        Uri.parse(uri),
+        body: {},
+      );
+      var recorde = jsonDecode(res.body);
+      if (recorde["status"] == "success") {
+        _showMyDialog("เเก้ไขสำเร็จ");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void _showMyDialog(String txtMsg) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Expanded(
+          child: AlertDialog(
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            title: const Text(
+              'เสร็จสิ้น',
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'CustomFont',
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 2, 2, 2),
+              ),
+            ),
+            content: Text(
+              txtMsg,
+              style: const TextStyle(
+                color: Colors.black,
+                fontFamily: 'CustomFont',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -64,6 +127,7 @@ class _Settings2EditProfileWidgetState extends State<SettingProfile> {
         top: true,
         child: SingleChildScrollView(
           child: Form(
+            key: formKey,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -112,6 +176,7 @@ class _Settings2EditProfileWidgetState extends State<SettingProfile> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: TextFormField(
+                                controller: email,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Email',
@@ -181,6 +246,7 @@ class _Settings2EditProfileWidgetState extends State<SettingProfile> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: TextFormField(
+                                controller: password,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Re-Set Password',
@@ -251,6 +317,7 @@ class _Settings2EditProfileWidgetState extends State<SettingProfile> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: TextFormField(
+                                controller: Phone,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Phone number',
@@ -318,10 +385,11 @@ class _Settings2EditProfileWidgetState extends State<SettingProfile> {
                 ),
                 FFButtonWidget(
                   onPressed: () {
+                    edit();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NavBar(),
+                        builder: (context) => Navigatorbar(),
                       ),
                     );
                   },
